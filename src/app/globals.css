@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-hornette-bg: #1a1a1a;
+  --color-hornette-card: #262626;
+  --color-hornette-primary: #faca15; /* yellow-400 */
+  --color-hornette-primary-hover: #eab308; /* yellow-500 */
+  --color-hornette-text: #f3f4f6;
+  --color-hornette-muted: #9ca3af;
+  --font-sans: "Inter", var(--font-geist-sans), sans-serif;
+}
+
+:root {
+  --background: var(--color-hornette-bg);
+  --foreground: var(--color-hornette-text);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Utilities for Premium Look */
+.glass-effect {
+  background: rgba(38, 38, 38, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.premium-shadow {
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
