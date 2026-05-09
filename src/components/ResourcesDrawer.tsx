@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FolderOpen, X, FileText, Download, ExternalLink, HardDrive } from "lucide-react";
+import { useParams } from "next/navigation";
+import { FolderOpen, X, FileText, Download, ExternalLink, HardDrive, Chrome } from "lucide-react";
 
 export default function ResourcesDrawer() {
   const [isOpen, setIsOpen] = useState(false);
+  const params = useParams();
+  const sessionId = parseInt(params?.sessionId as string) || 1;
 
   return (
     <>
@@ -119,6 +122,29 @@ export default function ResourcesDrawer() {
                     </div>
                   </a>
                 </div>
+
+                {/* Session 2 Resources */}
+                {sessionId >= 2 && (
+                  <div>
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--color-hornette-muted)] mb-3">Recursos Sesión 2</h3>
+                    <a 
+                      href="https://chromewebstore.google.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-start gap-4 p-4 rounded-xl border border-red-500/20 bg-red-500/5 hover:bg-red-500/10 transition-all group"
+                    >
+                      <div className="p-2 bg-red-500/10 rounded-lg group-hover:bg-red-500/20 transition-colors">
+                        <Chrome className="w-6 h-6 text-red-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-red-400 mb-1 flex items-center gap-2">
+                          Extensión de YouTube <ExternalLink className="w-3 h-3 opacity-70" />
+                        </h4>
+                        <p className="text-sm text-[var(--color-hornette-muted)]">Extensión de Chrome para importar videos largos directamente a tu cuaderno.</p>
+                      </div>
+                    </a>
+                  </div>
+                )}
 
               </div>
               

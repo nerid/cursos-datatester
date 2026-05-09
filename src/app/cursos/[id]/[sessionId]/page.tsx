@@ -251,8 +251,122 @@ export default function SessionPage() {
           )
         }
       ];
+    } else if (sid === 2) {
+      return [
+        {
+          title: `🧠 Objetivo principal, ${userName}`,
+          icon: <Star className="w-6 h-6 text-yellow-400" />,
+          content: (
+            <div className="space-y-3 text-lg">
+              <p>Aprender a usar <strong>NotebookLM</strong> como un cerebro secundario para organizar fuentes de investigación y documentos extensos, interactuando de manera <strong>privada y segura</strong>.</p>
+            </div>
+          )
+        },
+        {
+          title: "📥 Introducción y carga de fuentes",
+          icon: <HardDrive className="w-6 h-6 text-blue-400" />,
+          content: (
+            <div className="space-y-4 text-base">
+              <p>NotebookLM permite la carga de información multimodal: archivos de texto, PDFs, enlaces web y más.</p>
+              <ul className="space-y-4">
+                <li className="flex gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
+                  <span className="text-[var(--color-hornette-primary)] font-bold">1.</span>
+                  <div>
+                    <strong className="text-white block mb-1">Audios locales a MP3:</strong>
+                    <p>Convierte audios de WhatsApp (OGG) a MP3 usando el conversor local (File Converter) para subirlos como fuente, cuidando tu privacidad. <InfoTooltip content="Procesar localmente antes de subir asegura que tus conversaciones privadas no pasen por servidores no deseados en formatos no nativos." /></p>
+                  </div>
+                </li>
+                <li className="flex gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
+                  <span className="text-[var(--color-hornette-primary)] font-bold">2.</span>
+                  <div>
+                    <strong className="text-white block mb-1">Documentos Subrayados:</strong>
+                    <p>Si solo quieres que la IA analice partes subrayadas, la mejor estrategia es <strong>extraer esos textos a un nuevo documento</strong> o grabar una nota de voz leyéndolos y subirla como input principal.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          )
+        },
+        {
+          title: "🔗 Conexiones y Referencias",
+          icon: <ExternalLink className="w-6 h-6 text-green-400" />,
+          content: (
+            <ul className="space-y-4 text-base">
+              <li className="flex gap-3">
+                <span className="text-[var(--color-hornette-primary)] font-bold">1.</span>
+                <p><strong>Citas exactas:</strong> El chat responde insertando índices numéricos [1], [2]. Al darles clic, te llevan directamente a la <strong>línea exacta</strong> de tu documento fuente.</p>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-[var(--color-hornette-primary)] font-bold">2.</span>
+                <p><strong>Directrices estrictas:</strong> Sube un documento con reglas operativas (ej. Código Civil o manual de tu empresa) para <strong>forzar a la IA</strong> a ceñirse exclusivamente a esos parámetros y evitar alucinaciones.</p>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-[var(--color-hornette-primary)] font-bold">3.</span>
+                <p><strong>El Sentence Case:</strong> Recuerda pedirle que formatee los textos al estilo <em>"sentence case"</em> propio del español, para evitar el <em>"Title Case"</em> anglosajón.</p>
+              </li>
+            </ul>
+          )
+        },
+        {
+          title: "🎨 El panel Studio: transformación de la información",
+          icon: <Lightbulb className="w-6 h-6 text-pink-400" />,
+          content: (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
+                <h4 className="font-bold text-pink-400 flex items-center gap-2 mb-2"><PlayCircle className="w-4 h-4" /> Resúmenes en audio</h4>
+                <p className="text-sm text-gray-300">Generación de un formato de podcast a dos voces que debate tus documentos. Ideal para repasar en el auto.</p>
+              </div>
+              <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
+                <h4 className="font-bold text-pink-400 flex items-center gap-2 mb-2"><PenTool className="w-4 h-4" /> Guías de estudio</h4>
+                <p className="text-sm text-gray-300">Creación de cuestionarios y tarjetas interactivas (flashcards) para repasar conceptos clave.</p>
+              </div>
+              <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
+                <h4 className="font-bold text-pink-400 flex items-center gap-2 mb-2"><ImageIcon className="w-4 h-4" /> Mapas mentales</h4>
+                <p className="text-sm text-gray-300">Representaciones gráficas que expanden conceptos y agrupan temáticas densas.</p>
+              </div>
+              <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
+                <h4 className="font-bold text-pink-400 flex items-center gap-2 mb-2"><CheckCircle className="w-4 h-4" /> Tablas de datos</h4>
+                <p className="text-sm text-gray-300">Organización automática y cruzada de la información de varios documentos simultáneamente.</p>
+              </div>
+            </div>
+          )
+        },
+        {
+          title: "💻 Ejercicio 1: El diálogo con mis fuentes",
+          icon: <MessageSquare className="w-6 h-6 text-teal-400" />,
+          content: (
+            <div className="space-y-4">
+              <p>Accede a <strong>NotebookLM</strong> y sube 2 o 3 PDFs relacionados con tu área profesional. Luego, pega este prompt en el chat:</p>
+              <CopyableBlock 
+                label="Prompt Analítico" 
+                content="¿Cuáles son los 3 puntos de acuerdo más importantes entre estos documentos?" 
+              />
+              <div className="p-4 bg-teal-500/10 rounded-xl border border-teal-500/20 mt-4">
+                <p className="text-teal-300 font-medium">🎯 Meta del ejercicio:</p>
+                <p className="text-sm mt-1">Observa cómo el sistema cita las fuentes originales en su respuesta, comprobando que la información cruzada es precisa y rastreable.</p>
+              </div>
+            </div>
+          )
+        },
+        {
+          title: "📚 Ejercicio 2: Creación de material de apoyo",
+          icon: <Star className="w-6 h-6 text-[var(--color-hornette-primary)]" />,
+          content: (
+            <div className="space-y-4">
+              <ol className="list-decimal pl-5 space-y-3 text-lg">
+                <li>Selecciona uno de los documentos más densos cargados en tu cuaderno.</li>
+                <li>Navega al panel derecho de <strong>Studio</strong>.</li>
+                <li>Selecciona la opción <strong>"Guía de estudio"</strong>.</li>
+              </ol>
+              <p className="text-gray-300 mt-4 p-4 border-l-4 border-[var(--color-hornette-primary)] bg-white/5">
+                Revisa el cuestionario generado y las tarjetas de estudio (flashcards) e interactúa con ellas para validar tu comprensión del documento.
+              </p>
+            </div>
+          )
+        }
+      ];
     } else {
-      // Placeholder for Sessions 2, 3, 4
+      // Placeholder for Sessions 3, 4
       return [
         {
           title: `👋 Bienvenido a la Sesión ${sid}, ${userName}`,
