@@ -90,9 +90,11 @@ export default function SessionPage() {
       };
       
       const { error: upsertError } = await supabase.from('user_progress').upsert(payload);
-      if (upsertError && upsertError.code === 'PGRST204') {
+      if (upsertError) {
+        console.warn("Error en Supabase (posiblemente falta la columna email), reintentando sin email:", upsertError);
         delete payload.email;
-        await supabase.from('user_progress').upsert(payload);
+        const { error: retryError } = await supabase.from('user_progress').upsert(payload);
+        if (retryError) console.error("Error en reintento de Supabase:", retryError);
       }
       
       setCurrentStep(steps.length);

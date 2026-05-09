@@ -19,7 +19,9 @@ export default function LoginPage() {
     "jmiguel3184@gmail.com",
     "fcampos@esarq.edu.mx",
     "nerideliezer@gmail.com", // Añadido para que tú también puedas entrar como admin/pruebas
-    "giulia@demo.com" // Usuario demo solicitado
+    "giulia@demo.com", // Usuario demo solicitado
+    "wickedestbenito@gmail.com",
+    "leonie.runa@gmail.com"
   ];
 
   const handleLogin = async (e: React.FormEvent) => {
