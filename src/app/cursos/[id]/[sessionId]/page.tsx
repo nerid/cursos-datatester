@@ -187,7 +187,7 @@ export default function SessionPage() {
             <div className="space-y-5">
               <p>Copia el siguiente prompt haciendo clic en "Copiar" y pégalo en Gemini:</p>
               <CopyableBlock 
-                label="Prompt Inicial" 
+                label="Prompt inicial" 
                 content='Actúa como un asistente administrativo. Redacta un correo para un cliente que ha solicitado un descuento que no podemos otorgar. Explica que nuestros precios reflejan calidad en Guadalajara, pero ofrece una facilidad de pago' 
               />
               <div className="space-y-3 mt-6">
@@ -225,7 +225,7 @@ export default function SessionPage() {
                 <li>Nómbrala <strong>"Lira"</strong> y en las instrucciones copia y pega lo siguiente:</li>
               </ol>
               <CopyableBlock 
-                label="Instrucciones del Gem" 
+                label="Instrucciones del gem" 
                 content="Actúa como un especialista a nivel máster de optimización de prompts para inteligencia artificial. Tu misión va a ser transformar cualquier indicación o cualquier entrada que te dé un usuario a una precisión muchísimo más fina. Tu metodología tiene cuatro dimensiones: 1. Deconstruir la información (intenciones, entidades, contexto). 2. Diagnosticar. 3. Desarrollar las técnicas basadas en los requerimientos con un enfoque preciso y mostrando ejemplos. 4. Arrojar las respuestas en un formato base evaluando la complejidad, y haciendo preguntas de opción múltiple al usuario para clarificar lo que necesita antes de generar el prompt final. No guardes las sesiones en la memoria." 
               />
               <div className="p-4 bg-teal-500/10 rounded-xl border border-teal-500/20 mt-4">
@@ -242,7 +242,7 @@ export default function SessionPage() {
             <div className="space-y-5">
               <p>En un nuevo chat, copia y pide:</p>
               <CopyableBlock 
-                label="Prompt Base" 
+                label="Prompt base" 
                 content="Crea la imagen de un sujeto vestido con un uniforme de fútbol" 
               />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
@@ -304,7 +304,7 @@ export default function SessionPage() {
                 <li className="flex gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
                   <span className="text-[var(--color-hornette-primary)] font-bold">2.</span>
                   <div>
-                    <strong className="text-white block mb-1">Documentos Subrayados:</strong>
+                    <strong className="text-white block mb-1">Documentos subrayados:</strong>
                     <p>Si solo quieres que la IA analice partes subrayadas, la mejor estrategia es <strong>extraer esos textos a un nuevo documento</strong> o grabar una nota de voz leyéndolos y subirla como input principal.</p>
                   </div>
                 </li>
@@ -327,7 +327,7 @@ export default function SessionPage() {
               </li>
               <li className="flex gap-3">
                 <span className="text-[var(--color-hornette-primary)] font-bold">3.</span>
-                <p><strong>El Sentence Case:</strong> Recuerda pedirle que formatee los textos al estilo <em>"sentence case"</em> propio del español, para evitar el <em>"Title Case"</em> anglosajón.</p>
+                <p><strong>El sentence case:</strong> Recuerda pedirle que formatee los textos al estilo <em>"sentence case"</em> propio del español, para evitar el <em>"Title Case"</em> anglosajón.</p>
               </li>
             </ul>
           )
@@ -363,7 +363,7 @@ export default function SessionPage() {
             <div className="space-y-4">
               <p>Accede a <strong>NotebookLM</strong> y sube 2 o 3 PDFs relacionados con tu área profesional. Luego, pega este prompt en el chat:</p>
               <CopyableBlock 
-                label="Prompt Analítico" 
+                label="Prompt analítico" 
                 content="¿Cuáles son los 3 puntos de acuerdo más importantes entre estos documentos?" 
               />
               <div className="p-4 bg-teal-500/10 rounded-xl border border-teal-500/20 mt-4">
@@ -390,7 +390,7 @@ export default function SessionPage() {
           )
         },
         {
-          title: "📝 Plantillas de Prompts Listos para Usar",
+          title: "📝 Plantillas de prompts listos para usar",
           icon: <PenTool className="w-6 h-6 text-purple-400" />,
           content: (
             <div className="space-y-6">
@@ -572,10 +572,10 @@ export default function SessionPage() {
                           >
                             <CheckCircle className="w-5 h-5" />
                             {isMarkingCompleted 
-                              ? "GUARDANDO..." 
+                              ? "Guardando..." 
                               : index === steps.length - 1 
-                                ? (sessionId <= 4 ? "IR AL TEST DE EVALUACIÓN" : "FINALIZAR SESIÓN")
-                                : "LISTO, SIGUIENTE PASO"}
+                                ? (sessionId <= 4 ? "Ir al test de evaluación" : "Finalizar sesión")
+                                : "Listo, siguiente paso"}
                           </button>
                         </motion.div>
                       )}
@@ -617,7 +617,7 @@ export default function SessionPage() {
               <p className="text-xl text-[var(--color-hornette-muted)] mb-8">Gran trabajo, {userName}. Has completado esta parte de tu entrenamiento.</p>
               <Link href={`/cursos/${params?.id}`}>
                 <button className="px-8 py-4 rounded-xl bg-white/10 text-white font-bold tracking-wide hover:bg-white/20 transition-colors border border-white/20">
-                  VOLVER AL CURSO
+                  Volver al curso
                 </button>
               </Link>
             </motion.div>

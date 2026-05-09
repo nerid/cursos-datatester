@@ -119,7 +119,7 @@ export default function CoursePage() {
                 CURSO EN CURSO
               </div>
               <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-white drop-shadow-lg">
-                Fundamentos de Inteligencia Artificial
+                Fundamentos de inteligencia artificial
               </h1>
               <p className="text-lg text-[var(--color-hornette-muted)] max-w-xl leading-relaxed">
                 Domina las bases y comienza a usar la IA como una extensión de tu propia inteligencia.
@@ -129,7 +129,7 @@ export default function CoursePage() {
             {/* Progress Circle & Bar */}
             <div className="w-full md:w-64 bg-white/5 p-5 rounded-2xl border border-white/10">
               <div className="flex justify-between text-sm mb-3 font-semibold text-white">
-                <span>Tu Progreso</span>
+                <span>Tu progreso</span>
                 <span className="text-[var(--color-hornette-primary)]">{Math.round(progressPercentage)}%</span>
               </div>
               <div className="h-3 bg-black/50 rounded-full overflow-hidden border border-white/5 relative">
@@ -236,7 +236,7 @@ export default function CoursePage() {
 
             <h2 className="text-2xl font-bold mb-3 flex items-center gap-3 text-white">
               <Download className="w-6 h-6 text-[var(--color-hornette-primary)]" />
-              Materiales Desbloqueados
+              Materiales desbloqueados
             </h2>
             <p className="text-[var(--color-hornette-muted)] mb-8">
               Recursos exclusivos que has ganado por tu avance en el curso.

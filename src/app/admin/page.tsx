@@ -96,7 +96,7 @@ export default function AdminPage() {
           >
             <AlertTriangle className="w-6 h-6 text-red-500 shrink-0 mt-1" />
             <div>
-              <h3 className="text-red-400 font-bold text-lg mb-2">Acción Requerida en Supabase</h3>
+              <h3 className="text-red-400 font-bold text-lg mb-2">Acción requerida en Supabase</h3>
               <p className="text-red-300/80 text-sm mb-4">
                 Actualmente Supabase no está guardando los correos de los usuarios (columna <code className="bg-black/30 px-1 py-0.5 rounded text-white">email</code> no existe en la tabla <code className="bg-black/30 px-1 py-0.5 rounded text-white">user_progress</code>). Por lo tanto, sólo verás los IDs temporales.
               </p>

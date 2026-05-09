@@ -57,7 +57,7 @@ export default function Dashboard() {
                 href="/admin"
                 className="flex items-center gap-2 text-sm font-bold text-[var(--color-hornette-primary)] hover:text-white transition-colors bg-[var(--color-hornette-primary)]/10 px-4 py-2 rounded-lg"
               >
-                Panel Admin
+                Panel de administración
               </Link>
             )}
             <button 
@@ -77,9 +77,9 @@ export default function Dashboard() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-12"
         >
-          <h1 className="text-4xl font-bold mb-4">Mis Cursos</h1>
+          <h1 className="text-4xl font-bold mb-4">Mis cursos</h1>
           <p className="text-[var(--color-hornette-muted)] text-lg">
-            Continúa tu aprendizaje y domina la Inteligencia Artificial.
+            Continúa tu aprendizaje y domina la inteligencia artificial.
           </p>
         </motion.div>
 

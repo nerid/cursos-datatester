@@ -90,7 +90,7 @@ export default function LoginPage() {
           
           <div>
             <label className="block text-sm font-medium text-[var(--color-hornette-muted)] mb-2">
-              Correo Electrónico
+              Correo electrónico
             </label>
             <input
               type="email"
@@ -120,7 +120,7 @@ export default function LoginPage() {
             type="submit"
             className="w-full py-3 rounded-lg bg-[var(--color-hornette-primary)] text-black font-bold tracking-wide hover:bg-[var(--color-hornette-primary-hover)] transition-colors mt-2"
           >
-            INICIAR SESIÓN
+            Iniciar sesión
           </button>
         </form>
 
