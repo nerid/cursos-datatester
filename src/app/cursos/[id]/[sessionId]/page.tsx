@@ -109,15 +109,29 @@ export default function SessionPage() {
                   </div>
                 </div>
               </a>
-              <div className="block p-4 rounded-xl bg-white/5 border border-white/10">
-                 <div className="flex items-center gap-3">
-                  <DownloadIcon className="w-8 h-8 text-green-400" />
+
+              <a href="https://file-converter.io/download.html" target="_blank" rel="noopener noreferrer" className="block p-4 rounded-xl bg-white/5 border border-white/10 hover:border-green-400/50 hover:bg-white/10 transition-all">
+                 <div className="flex items-start gap-3">
+                  <DownloadIcon className="w-8 h-8 text-green-400 shrink-0 mt-1" />
                   <div>
-                    <h4 className="font-bold text-white">Extensión conversora de archivos (solo Windows)</h4>
-                    <p className="text-sm text-[var(--color-hornette-muted)]">Nos servirá para cambiar formatos de audio, PDF o imagen con un solo clic derecho.</p>
+                    <h4 className="font-bold text-white">Extensión File Converter (Solo Windows)</h4>
+                    <p className="text-sm text-[var(--color-hornette-muted)] mt-1">
+                      Esta herramienta nos servirá para cambiar formatos de audio, PDF o imagen con un solo clic derecho directamente desde tu explorador de archivos. 
+                      <strong className="text-white block mt-2">🛡️ 100% Segura y sin virus. Es una herramienta de código abierto muy reconocida en la comunidad técnica.</strong>
+                    </p>
                   </div>
                 </div>
-              </div>
+              </a>
+
+              <a href="#" target="_blank" rel="noopener noreferrer" className="block p-4 rounded-xl bg-[var(--color-hornette-primary)]/10 border border-[var(--color-hornette-primary)]/30 hover:bg-[var(--color-hornette-primary)]/20 transition-all">
+                <div className="flex items-center gap-3">
+                  <ExternalLink className="w-8 h-8 text-[var(--color-hornette-primary)]" />
+                  <div>
+                    <h4 className="font-bold text-white">Aquí está el Drive con recursos</h4>
+                    <p className="text-sm text-[var(--color-hornette-muted)]">Material extra y documentos para seguir la sesión.</p>
+                  </div>
+                </div>
+              </a>
             </div>
           )
         },
@@ -199,17 +213,30 @@ export default function SessionPage() {
             <div className="space-y-5">
               <p>En un nuevo chat, copia y pide:</p>
               <CopyableBlock 
-                label="Prompt de Imagen" 
+                label="Prompt Base" 
                 content="Crea la imagen de un sujeto vestido con un uniforme de fútbol" 
               />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                <div className="p-4 rounded-xl border border-white/10 bg-white/5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div className="p-4 rounded-xl border border-white/10 bg-white/5 overflow-hidden flex flex-col">
                   <h4 className="text-pink-400 font-bold mb-2">Iteración 1</h4>
-                  <p className="text-sm text-[var(--color-hornette-muted)]">Pídele que le ponga una peluca y que la imagen sea en formato vertical (9:16).</p>
+                  <div className="w-full aspect-[9/16] bg-black/50 rounded-lg overflow-hidden mb-3 relative max-h-[300px]">
+                    <img src="/images/iteracion_1.png" alt="Iteración 1" className="object-cover w-full h-full hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <CopyableBlock 
+                    label="Evolución 1" 
+                    content="Ponle una peluca divertida y que la imagen sea en formato vertical (9:16)." 
+                  />
                 </div>
-                <div className="p-4 rounded-xl border border-white/10 bg-white/5">
+                
+                <div className="p-4 rounded-xl border border-white/10 bg-white/5 overflow-hidden flex flex-col">
                   <h4 className="text-pink-400 font-bold mb-2">Iteración 2</h4>
-                  <p className="text-sm text-[var(--color-hornette-muted)]">Pídele que el sujeto esté tirando un penalti y que el fondo sea un "boceto al carbón" con iluminación emotiva.</p>
+                  <div className="w-full aspect-[9/16] bg-black/50 rounded-lg overflow-hidden mb-3 relative max-h-[300px]">
+                    <img src="/images/iteracion_2.png" alt="Iteración 2" className="object-cover w-full h-full hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <CopyableBlock 
+                    label="Evolución 2" 
+                    content="Haz que el sujeto esté tirando un penalti y que el fondo sea un boceto al carbón con iluminación emotiva." 
+                  />
                 </div>
               </div>
               <p className="text-xs text-[var(--color-hornette-primary)] flex gap-2 items-center bg-[var(--color-hornette-primary)]/10 p-3 rounded-lg mt-4">
