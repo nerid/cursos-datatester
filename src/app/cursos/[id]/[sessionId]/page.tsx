@@ -8,6 +8,7 @@ import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/lib/supabase";
 import { useParams, useRouter } from "next/navigation";
 import Quiz from "@/components/Quiz";
+import InfoTooltip from "@/components/InfoTooltip";
 
 function CopyableBlock({ content, label = "Prompt", type = "code" }: { content: string, label?: string, type?: "code" | "text" }) {
   const [copied, setCopied] = useState(false);
@@ -94,7 +95,7 @@ export default function SessionPage() {
           icon: <Star className="w-6 h-6 text-yellow-400" />,
           content: (
             <div className="space-y-3 text-lg">
-              <p>Aprender a comunicarnos con la IA, <strong>quitarnos los miedos</strong> a la herramienta y entender que la <strong>iteración</strong> (modificar y perfeccionar) es la clave para no tener resultados genéricos o acartonados.</p>
+              <p>Aprender a comunicarnos con la IA, <strong>quitarnos los miedos</strong> a la herramienta y entender que la <strong>iteración</strong><InfoTooltip content="El proceso de repetir y mejorar un prompt basándose en la respuesta que la IA te acaba de dar." /> es la clave para no tener resultados genéricos o acartonados.</p>
             </div>
           )
         },
@@ -145,7 +146,7 @@ export default function SessionPage() {
             <ul className="space-y-4 text-base">
               <li className="flex gap-3">
                 <span className="text-[var(--color-hornette-primary)] font-bold">1.</span>
-                <p><strong>No todos los modelos son iguales:</strong> hoy usaremos Gemini porque se integra perfecto con nuestros documentos de trabajo diario (Workspace), pero existen otros como ChatGPT, Claude o Copilot.</p>
+                <p><strong>No todos los modelos son iguales:</strong> hoy usaremos Gemini porque se integra perfecto con nuestros documentos de trabajo diario (Workspace), pero existen otros como ChatGPT, Claude o Copilot.<InfoTooltip content="Cada IA (modelo) tiene sus propias fortalezas. Gemini destaca en ecosistemas de Google, Claude en escritura creativa, y GPT en razonamiento lógico complejo." /></p>
               </li>
               <li className="flex gap-3">
                 <span className="text-[var(--color-hornette-primary)] font-bold">2.</span>
@@ -203,7 +204,7 @@ export default function SessionPage() {
                 content="Actúa como un especialista a nivel máster de optimización de prompts para inteligencia artificial. Tu misión va a ser transformar cualquier indicación o cualquier entrada que te dé un usuario a una precisión muchísimo más fina. Tu metodología tiene cuatro dimensiones: 1. Deconstruir la información (intenciones, entidades, contexto). 2. Diagnosticar. 3. Desarrollar las técnicas basadas en los requerimientos con un enfoque preciso y mostrando ejemplos. 4. Arrojar las respuestas en un formato base evaluando la complejidad, y haciendo preguntas de opción múltiple al usuario para clarificar lo que necesita antes de generar el prompt final. No guardes las sesiones en la memoria." 
               />
               <div className="p-4 bg-teal-500/10 rounded-xl border border-teal-500/20 mt-4">
-                <p className="text-teal-300 font-medium">Pon a prueba a Lira:</p>
+                <p className="text-teal-300 font-medium flex items-center gap-2">Pon a prueba a Lira <InfoTooltip content="Lira es un 'Agente' personalizado. Un agente es una versión de la IA configurada con instrucciones previas para cumplir un rol específico." />:</p>
                 <p className="text-sm mt-1">Dile <em>"Quiero una tabla de finanzas personales semanal"</em>. Lira te hará preguntas. ¡Responde con números y usa el prompt maestro que te devuelva!</p>
               </div>
             </div>
