@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams } from "next/navigation";
-import { FolderOpen, X, FileText, Download, ExternalLink, HardDrive, Chrome } from "lucide-react";
+import { FolderOpen, X, FileText, Download, ExternalLink, HardDrive, Globe } from "lucide-react";
 
 export default function ResourcesDrawer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -134,7 +134,7 @@ export default function ResourcesDrawer() {
                       className="flex items-start gap-4 p-4 rounded-xl border border-red-500/20 bg-red-500/5 hover:bg-red-500/10 transition-all group"
                     >
                       <div className="p-2 bg-red-500/10 rounded-lg group-hover:bg-red-500/20 transition-colors">
-                        <Chrome className="w-6 h-6 text-red-400" />
+                        <Globe className="w-6 h-6 text-red-400" />
                       </div>
                       <div>
                         <h4 className="font-bold text-red-400 mb-1 flex items-center gap-2">

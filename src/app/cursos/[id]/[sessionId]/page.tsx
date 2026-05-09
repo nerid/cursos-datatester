@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle, Circle, ArrowLeft, ArrowRight, ExternalLink, Lightbulb, PlayCircle, Star, PenTool, Image as ImageIcon, MessageSquare, Copy, Check } from "lucide-react";
+import { CheckCircle, Circle, ArrowLeft, ArrowRight, ExternalLink, Lightbulb, PlayCircle, Star, PenTool, Image as ImageIcon, MessageSquare, Copy, Check, HardDrive } from "lucide-react";
 import Link from "next/link";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/lib/supabase";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, XCircle, ArrowRight, RefreshCw, AlertTriangle } from 'lucide-react';
+import { CheckCircle, XCircle, ArrowRight, RefreshCw, AlertTriangle, Circle } from 'lucide-react';
 
 const allQuestions = [
   {
