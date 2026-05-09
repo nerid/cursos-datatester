@@ -80,7 +80,7 @@ export default function Dashboard() {
               transition={{ delay: index * 0.1 }}
               className={`rounded-2xl p-6 border ${
                 course.status === "active" 
-                  ? "bg-[var(--color-hornette-card)] border-white/10 premium-shadow hover:border-[var(--color-hornette-primary)] transition-colors" 
+                  ? "bg-[var(--color-hornette-card)] border-white/10 hornette-shadow hover:border-[var(--color-hornette-primary)] transition-colors" 
                   : "bg-white/5 border-white/5 opacity-70"
               }`}
             >

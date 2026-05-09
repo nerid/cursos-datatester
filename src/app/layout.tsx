@@ -3,8 +3,8 @@ import "./globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
-  title: "Cursos DataTester - IA Premium",
-  description: "Plataforma de cursos premium de Inteligencia Artificial.",
+  title: "Cursos DataTester - IA",
+  description: "Plataforma exclusiva de cursos de Inteligencia Artificial.",
 };
 
 export default function RootLayout({

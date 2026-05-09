@@ -23,7 +23,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Utilities for Premium Look */
+/* Custom Utilities for High-End Look */
 .glass-effect {
   background: rgba(38, 38, 38, 0.6);
   backdrop-filter: blur(12px);
@@ -31,6 +31,6 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.premium-shadow {
+.hornette-shadow {
   box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
 }

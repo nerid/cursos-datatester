@@ -1,0 +1,394 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle, Circle, ArrowLeft, ArrowRight, ExternalLink, Lightbulb, PlayCircle, Star, PenTool, Image as ImageIcon, MessageSquare, Copy, Check } from "lucide-react";
+import Link from "next/link";
+import { useAuth } from "@/components/AuthProvider";
+import { supabase } from "@/lib/supabase";
+import { useParams, useRouter } from "next/navigation";
+
+function CopyableBlock({ content, label = "Prompt", type = "code" }: { content: string, label?: string, type?: "code" | "text" }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(content);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="relative group rounded-xl overflow-hidden border border-white/10 bg-black/40 mt-3">
+      <div className="flex justify-between items-center px-4 py-2 bg-white/5 border-b border-white/10">
+        <span className="text-xs font-semibold uppercase tracking-widest text-[var(--color-hornette-primary)]">{label}</span>
+        <button 
+          onClick={handleCopy}
+          className="text-[var(--color-hornette-muted)] hover:text-white transition-colors flex items-center gap-2 text-xs"
+        >
+          {copied ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
+          {copied ? "Copiado" : "Copiar"}
+        </button>
+      </div>
+      <div className="p-4 overflow-x-auto">
+        {type === "code" ? (
+          <pre className="font-mono text-sm text-gray-200 whitespace-pre-wrap">{content}</pre>
+        ) : (
+          <p className="text-sm text-gray-200">{content}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function SessionPage() {
+  const params = useParams();
+  const router = useRouter();
+  const { user } = useAuth();
+  const [currentStep, setCurrentStep] = useState(0);
+  const [isMarkingCompleted, setIsMarkingCompleted] = useState(false);
+  
+  const userName = user?.displayName?.split(' ')[0] || user?.email?.split('@')[0] || "Estudiante";
+  const sessionId = parseInt(params?.sessionId as string) || 1;
+
+  const markSessionCompleted = async () => {
+    if (!user) return;
+    setIsMarkingCompleted(true);
+    
+    try {
+      // Fetch current progress
+      const { data: currentProgress } = await supabase
+        .from('user_progress')
+        .select('completed_sessions')
+        .eq('user_id', user.uid)
+        .eq('course_id', params?.id)
+        .single();
+        
+      let updatedSessions = currentProgress?.completed_sessions || [];
+      if (!updatedSessions.includes(sessionId)) {
+        updatedSessions.push(sessionId);
+      }
+
+      await supabase.from('user_progress').upsert({
+        user_id: user.uid,
+        course_id: params?.id,
+        completed_sessions: updatedSessions,
+        updated_at: new Date().toISOString()
+      });
+      
+      setCurrentStep(steps.length);
+    } catch (error) {
+      console.error("Error saving progress", error);
+    } finally {
+      setIsMarkingCompleted(false);
+    }
+  };
+
+  const getSessionSteps = (sid: number) => {
+    if (sid === 1) {
+      return [
+        {
+          title: `🎯 Objetivo principal, ${userName}`,
+          icon: <Star className="w-6 h-6 text-yellow-400" />,
+          content: (
+            <div className="space-y-3 text-lg">
+              <p>Aprender a comunicarnos con la IA, <strong>quitarnos los miedos</strong> a la herramienta y entender que la <strong>iteración</strong> (modificar y perfeccionar) es la clave para no tener resultados genéricos o acartonados.</p>
+            </div>
+          )
+        },
+        {
+          title: "🔗 Herramientas y enlaces clave",
+          icon: <ExternalLink className="w-6 h-6 text-blue-400" />,
+          content: (
+            <div className="space-y-4">
+              <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" className="block p-4 rounded-xl bg-white/5 border border-white/10 hover:border-blue-400/50 hover:bg-white/10 transition-all">
+                <div className="flex items-center gap-3">
+                  <img src="https://www.gstatic.com/lamda/images/favicon_v1_150160cddff7f294ce30.svg" alt="Gemini" className="w-8 h-8" />
+                  <div>
+                    <h4 className="font-bold text-white">Google Gemini</h4>
+                    <p className="text-sm text-[var(--color-hornette-muted)]">Necesitarás iniciar sesión con tu cuenta de Google.</p>
+                  </div>
+                </div>
+              </a>
+              <div className="block p-4 rounded-xl bg-white/5 border border-white/10">
+                 <div className="flex items-center gap-3">
+                  <DownloadIcon className="w-8 h-8 text-green-400" />
+                  <div>
+                    <h4 className="font-bold text-white">Extensión conversora de archivos (solo Windows)</h4>
+                    <p className="text-sm text-[var(--color-hornette-muted)]">Nos servirá para cambiar formatos de audio, PDF o imagen con un solo clic derecho.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        },
+        {
+          title: "🧠 Conceptos rápidos antes de empezar",
+          icon: <Lightbulb className="w-6 h-6 text-orange-400" />,
+          content: (
+            <ul className="space-y-4 text-base">
+              <li className="flex gap-3">
+                <span className="text-[var(--color-hornette-primary)] font-bold">1.</span>
+                <p><strong>No todos los modelos son iguales:</strong> hoy usaremos Gemini porque se integra perfecto con nuestros documentos de trabajo diario (Workspace), pero existen otros como ChatGPT, Claude o Copilot.</p>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-[var(--color-hornette-primary)] font-bold">2.</span>
+                <p><strong>El detector de IA:</strong> si quieres evitar que tus textos parezcan hechos por una máquina de un solo vistazo, pídele siempre a Gemini que utilice nuestro formato de títulos al estilo <em>"sentence case"</em> (tipo oración), propio del español.</p>
+              </li>
+            </ul>
+          )
+        },
+        {
+          title: "💻 Ejercicio 1: El correo diplomático",
+          icon: <MessageSquare className="w-6 h-6 text-indigo-400" />,
+          content: (
+            <div className="space-y-5">
+              <p>Copia el siguiente prompt haciendo clic en "Copiar" y pégalo en Gemini:</p>
+              <CopyableBlock 
+                label="Prompt Inicial" 
+                content='Actúa como un asistente administrativo. Redacta un correo para un cliente que ha solicitado un descuento que no podemos otorgar. Explica que nuestros precios reflejan calidad en Guadalajara, pero ofrece una facilidad de pago' 
+              />
+              <div className="space-y-3 mt-6">
+                <p className="font-bold text-[var(--color-hornette-primary)]">¡Iteremos, {userName}!</p>
+                <ul className="list-disc pl-5 space-y-2 text-[var(--color-hornette-muted)]">
+                  <li>Edita la instrucción o dile en el chat que cambie el tono.</li>
+                  <li>Pídele que lo reescriba como un <strong>"poeta maldito"</strong> o con un tono <strong>"cómico y sarcástico"</strong>.</li>
+                  <li>Pídele que lo haga de forma sintética para que <strong>no exceda las 50 palabras</strong>.</li>
+                </ul>
+              </div>
+            </div>
+          )
+        },
+        {
+          title: "🎤 Ejercicio 2: El asistente de agenda (dictado por voz)",
+          icon: <PlayCircle className="w-6 h-6 text-red-400" />,
+          content: (
+            <div className="space-y-4">
+              <p className="text-lg">Activa el ícono del <strong>micrófono</strong> en la barra de chat de Gemini.</p>
+              <div className="p-4 bg-white/5 rounded-xl border-l-4 border-red-500">
+                <p className="italic text-[var(--color-hornette-muted)]">"Dicta una lista totalmente desordenada: menciona frutas (huevo, cebolla, chile), modelos de celulares y los días de la semana."</p>
+              </div>
+              <p className="text-white">Pide por voz que ordene los elementos alfabéticamente en una tabla y que le agregue precios estimados del mercado actual.</p>
+            </div>
+          )
+        },
+        {
+          title: "💎 Ejercicio 3: Creación de tu asistente 'Lira'",
+          icon: <PenTool className="w-6 h-6 text-teal-400" />,
+          content: (
+            <div className="space-y-4">
+              <p>A veces no sabemos cómo pedir las cosas. Para eso crearemos a <strong>"Lira"</strong>, un asistente que mejorará nuestros prompts.</p>
+              <ol className="list-decimal pl-5 space-y-3 text-[var(--color-hornette-muted)]">
+                <li>En Gemini, ve al menú izquierdo, selecciona <strong>Gems</strong> y haz clic en <strong>Nueva Gem</strong>.</li>
+                <li>Nómbrala <strong>"Lira"</strong> y en las instrucciones copia y pega lo siguiente:</li>
+              </ol>
+              <CopyableBlock 
+                label="Instrucciones del Gem" 
+                content="Actúa como un especialista a nivel máster de optimización de prompts para inteligencia artificial. Tu misión va a ser transformar cualquier indicación o cualquier entrada que te dé un usuario a una precisión muchísimo más fina. Tu metodología tiene cuatro dimensiones: 1. Deconstruir la información (intenciones, entidades, contexto). 2. Diagnosticar. 3. Desarrollar las técnicas basadas en los requerimientos con un enfoque preciso y mostrando ejemplos. 4. Arrojar las respuestas en un formato base evaluando la complejidad, y haciendo preguntas de opción múltiple al usuario para clarificar lo que necesita antes de generar el prompt final. No guardes las sesiones en la memoria." 
+              />
+              <div className="p-4 bg-teal-500/10 rounded-xl border border-teal-500/20 mt-4">
+                <p className="text-teal-300 font-medium">Pon a prueba a Lira:</p>
+                <p className="text-sm mt-1">Dile <em>"Quiero una tabla de finanzas personales semanal"</em>. Lira te hará preguntas. ¡Responde con números y usa el prompt maestro que te devuelva!</p>
+              </div>
+            </div>
+          )
+        },
+        {
+          title: "🎨 Ejercicio 4: Creación visual con Nano Banana",
+          icon: <ImageIcon className="w-6 h-6 text-pink-400" />,
+          content: (
+            <div className="space-y-5">
+              <p>En un nuevo chat, copia y pide:</p>
+              <CopyableBlock 
+                label="Prompt de Imagen" 
+                content="Crea la imagen de un sujeto vestido con un uniforme de fútbol" 
+              />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <div className="p-4 rounded-xl border border-white/10 bg-white/5">
+                  <h4 className="text-pink-400 font-bold mb-2">Iteración 1</h4>
+                  <p className="text-sm text-[var(--color-hornette-muted)]">Pídele que le ponga una peluca y que la imagen sea en formato vertical (9:16).</p>
+                </div>
+                <div className="p-4 rounded-xl border border-white/10 bg-white/5">
+                  <h4 className="text-pink-400 font-bold mb-2">Iteración 2</h4>
+                  <p className="text-sm text-[var(--color-hornette-muted)]">Pídele que el sujeto esté tirando un penalti y que el fondo sea un "boceto al carbón" con iluminación emotiva.</p>
+                </div>
+              </div>
+              <p className="text-xs text-[var(--color-hornette-primary)] flex gap-2 items-center bg-[var(--color-hornette-primary)]/10 p-3 rounded-lg mt-4">
+                <Lightbulb className="w-4 h-4 shrink-0" />
+                Nota: Si la IA pone al jugador "flotando en el aire", corrige tu prompt siendo más específico: "que el balón esté a ras de pasto".
+              </p>
+            </div>
+          )
+        }
+      ];
+    } else {
+      // Placeholder for Sessions 2, 3, 4
+      return [
+        {
+          title: `👋 Bienvenido a la Sesión ${sid}, ${userName}`,
+          icon: <Star className="w-6 h-6 text-[var(--color-hornette-primary)]" />,
+          content: (
+            <div className="space-y-4">
+              <p className="text-lg">Esta sesión es un paso crucial en tu aprendizaje. A continuación, repasaremos los conceptos clave.</p>
+            </div>
+          )
+        },
+        {
+          title: "🚧 Contenido en construcción",
+          icon: <PenTool className="w-6 h-6 text-orange-400" />,
+          content: (
+            <div className="space-y-4">
+              <p>El instructor proporcionará las instrucciones en la llamada de Meet. Aquí podrás copiar y pegar los prompts una vez que se actualice la plataforma.</p>
+              <CopyableBlock label="Ejemplo de Prompt" content={`Hola, soy ${userName}. Estoy listo para la sesión ${sid}.`} />
+            </div>
+          )
+        }
+      ];
+    }
+  };
+
+  const steps = getSessionSteps(sessionId);
+
+  return (
+    <div className="min-h-screen bg-[var(--color-hornette-bg)] pb-24 relative">
+      {/* Hero Background */}
+      <div 
+        className="absolute top-0 left-0 w-full h-[400px] opacity-20 pointer-events-none"
+        style={{
+          backgroundImage: "url('/images/ai_session_hero.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 100%)"
+        }}
+      />
+      
+      <nav className="border-b border-white/10 glass-effect sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center">
+            <Link href={`/cursos/${params?.id}`} className="text-[var(--color-hornette-muted)] hover:text-white transition-colors mr-6">
+              <ArrowLeft className="w-6 h-6" />
+            </Link>
+            <div>
+              <div className="text-xs text-[var(--color-hornette-primary)] font-bold uppercase tracking-wider mb-1">Parte {sessionId}</div>
+              <div className="text-xl font-bold">Guía de seguimiento 🚀</div>
+            </div>
+          </div>
+          <div className="text-sm font-medium text-[var(--color-hornette-muted)]">
+            Paso {currentStep + 1} de {steps.length}
+          </div>
+        </div>
+        {/* Progress Bar */}
+        <div className="h-1 w-full bg-white/10">
+          <motion.div 
+            className="h-full bg-[var(--color-hornette-primary)]"
+            initial={{ width: 0 }}
+            animate={{ width: `${(Math.min(currentStep, steps.length) / steps.length) * 100}%` }}
+            transition={{ duration: 0.5 }}
+          />
+        </div>
+      </nav>
+
+      <main className="max-w-3xl mx-auto px-6 py-12 relative z-10">
+        <div className="space-y-8">
+          <AnimatePresence>
+            {steps.map((step, index) => {
+              if (index > currentStep) return null;
+              
+              const isCurrent = index === currentStep;
+              const isPast = index < currentStep;
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.5, type: "spring", bounce: 0.4 }}
+                  className={`relative rounded-2xl p-6 md:p-8 transition-all duration-500 ${
+                    isCurrent 
+                      ? "glass-effect border border-[var(--color-hornette-primary)]/50 shadow-[0_10px_40px_rgba(255,204,0,0.1)]" 
+                      : "bg-white/5 border border-white/5 opacity-60 hover:opacity-100"
+                  }`}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className={`p-3 rounded-xl ${isCurrent ? "bg-white/10" : "bg-black/30"}`}>
+                      {step.icon}
+                    </div>
+                    <div className="flex-1 overflow-hidden">
+                      <h2 className={`text-2xl font-bold mb-4 ${isPast ? "text-[var(--color-hornette-muted)]" : "text-white"}`}>
+                        {step.title}
+                      </h2>
+                      <div className={`transition-all duration-500 ${isPast ? "grayscale" : ""}`}>
+                        {step.content}
+                      </div>
+
+                      {isCurrent && index < steps.length && (
+                        <motion.div 
+                          initial={{ opacity: 0, mt: 0 }}
+                          animate={{ opacity: 1, mt: 32 }}
+                          transition={{ delay: 0.5 }}
+                        >
+                          <button
+                            onClick={() => {
+                              if (index === steps.length - 1) {
+                                markSessionCompleted();
+                              } else {
+                                setCurrentStep(prev => prev + 1);
+                              }
+                            }}
+                            disabled={isMarkingCompleted}
+                            className="w-full md:w-auto px-8 py-4 rounded-xl bg-[var(--color-hornette-primary)] text-black font-bold tracking-wide hover:bg-[var(--color-hornette-primary-hover)] transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,204,0,0.3)] hover:shadow-[0_0_30px_rgba(255,204,0,0.5)] transform hover:-translate-y-1 disabled:opacity-70 disabled:cursor-wait"
+                          >
+                            <CheckCircle className="w-5 h-5" />
+                            {isMarkingCompleted 
+                              ? "GUARDANDO..." 
+                              : index === steps.length - 1 ? "FINALIZAR SESIÓN" : "LISTO, SIGUIENTE PASO"}
+                          </button>
+                        </motion.div>
+                      )}
+
+                      {isPast && (
+                        <div className="absolute top-6 right-6">
+                          <CheckCircle className="w-8 h-8 text-[var(--color-hornette-primary)] opacity-50" />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+
+          {currentStep === steps.length && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center py-16"
+            >
+              <div className="w-24 h-24 mx-auto bg-[var(--color-hornette-primary)] rounded-full flex items-center justify-center mb-6 shadow-[0_0_50px_rgba(255,204,0,0.5)]">
+                <Star className="w-12 h-12 text-black" />
+              </div>
+              <h2 className="text-4xl font-extrabold mb-4">¡Sesión {sessionId} Completada! 🎉</h2>
+              <p className="text-xl text-[var(--color-hornette-muted)] mb-8">Gran trabajo, {userName}. Has completado esta parte de tu entrenamiento.</p>
+              <Link href={`/cursos/${params?.id}`}>
+                <button className="px-8 py-4 rounded-xl bg-white/10 text-white font-bold tracking-wide hover:bg-white/20 transition-colors border border-white/20">
+                  VOLVER AL CURSO
+                </button>
+              </Link>
+            </motion.div>
+          )}
+        </div>
+      </main>
+    </div>
+  );
+}
+
+// Icono simple para la extensión
+function DownloadIcon(props: any) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+  );
+}
