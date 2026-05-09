@@ -59,7 +59,12 @@ export default function SessionPage() {
     setIsMarkingCompleted(true);
     
     try {
-      // Fetch current progress
+      // Fetch current progress locally first
+      const lsKey = `progress_${user.uid}_${params?.id}`;
+      const lsData = localStorage.getItem(lsKey);
+      let localSessions: number[] = lsData ? JSON.parse(lsData) : [];
+      
+      // Fetch current progress from DB
       const { data: currentProgress } = await supabase
         .from('user_progress')
         .select('completed_sessions')
@@ -67,11 +72,15 @@ export default function SessionPage() {
         .eq('course_id', params?.id)
         .single();
         
-      let updatedSessions = currentProgress?.completed_sessions || [];
+      let updatedSessions = Array.from(new Set([...(currentProgress?.completed_sessions || []), ...localSessions]));
       if (!updatedSessions.includes(sessionId)) {
         updatedSessions.push(sessionId);
       }
 
+      // Save locally as fallback IMMEDIATELY
+      localStorage.setItem(lsKey, JSON.stringify(updatedSessions));
+
+      // Save to Supabase
       await supabase.from('user_progress').upsert({
         user_id: user.uid,
         course_id: params?.id,
@@ -82,6 +91,15 @@ export default function SessionPage() {
       setCurrentStep(steps.length);
     } catch (error) {
       console.error("Error saving progress", error);
+      // Ensure local fallback advances UI even if DB fails
+      const lsKey = `progress_${user.uid}_${params?.id}`;
+      const lsData = localStorage.getItem(lsKey);
+      let localSessions: number[] = lsData ? JSON.parse(lsData) : [];
+      if (!localSessions.includes(sessionId)) {
+        localSessions.push(sessionId);
+      }
+      localStorage.setItem(lsKey, JSON.stringify(localSessions));
+      setCurrentStep(steps.length);
     } finally {
       setIsMarkingCompleted(false);
     }

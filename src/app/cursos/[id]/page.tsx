@@ -9,10 +9,10 @@ import { supabase } from "@/lib/supabase";
 import { useParams } from "next/navigation";
 
 const sessions = [
-  { id: 1, title: "Introducción a la IA y Conceptos Básicos", duration: "45 min" },
-  { id: 2, title: "Herramientas de IA Generativa", duration: "60 min" },
-  { id: 3, title: "Prompt Engineering Efectivo", duration: "50 min" },
-  { id: 4, title: "Casos de Uso en el Trabajo Diario", duration: "40 min" },
+  { id: 1, title: "Introducción a la IA y Conceptos Básicos", duration: "45 min", badge: "Pionero", emoji: "🌱" },
+  { id: 2, title: "Herramientas de IA Generativa", duration: "60 min", badge: "Explorador", emoji: "🧭" },
+  { id: 3, title: "Prompt Engineering Efectivo", duration: "50 min", badge: "Arquitecto", emoji: "🏗️" },
+  { id: 4, title: "Casos de Uso en el Trabajo Diario", duration: "40 min", badge: "Maestro", emoji: "👑" },
 ];
 
 export default function CoursePage() {
@@ -30,6 +30,10 @@ export default function CoursePage() {
   const fetchProgress = async () => {
     if (!user) return;
     try {
+      const lsKey = `progress_${user.uid}_${params?.id}`;
+      const lsData = localStorage.getItem(lsKey);
+      let localSessions: number[] = lsData ? JSON.parse(lsData) : [];
+
       const { data, error } = await supabase
         .from('user_progress')
         .select('completed_sessions')
@@ -37,11 +41,20 @@ export default function CoursePage() {
         .eq('course_id', params?.id)
         .single();
       
-      if (data && !error) {
-        setCompletedSessions(data.completed_sessions || []);
+      if (data && !error && data.completed_sessions) {
+        const merged = Array.from(new Set([...data.completed_sessions, ...localSessions]));
+        setCompletedSessions(merged);
+        if (merged.length > data.completed_sessions.length) {
+          await supabase.from('user_progress').upsert({ user_id: user.uid, course_id: params?.id, completed_sessions: merged });
+        }
+      } else {
+        setCompletedSessions(localSessions);
       }
     } catch (error) {
       console.error("Error fetching progress", error);
+      const lsKey = `progress_${user.uid}_${params?.id}`;
+      const lsData = localStorage.getItem(lsKey);
+      if (lsData) setCompletedSessions(JSON.parse(lsData));
     } finally {
       setLoading(false);
     }
@@ -150,29 +163,32 @@ export default function CoursePage() {
                   <div className="flex items-center gap-5 mb-4 sm:mb-0 relative z-10">
                     <div className="flex-shrink-0 relative">
                       {isCompleted ? (
-                        <div className="bg-[var(--color-hornette-primary)]/20 p-2 rounded-full">
+                        <div className="bg-[var(--color-hornette-primary)]/20 p-3 rounded-full">
                           <CheckCircle className="w-8 h-8 text-[var(--color-hornette-primary)] drop-shadow-[0_0_10px_rgba(255,204,0,0.8)]" />
                         </div>
                       ) : !isUnlocked ? (
-                        <div className="bg-white/5 p-2 rounded-full">
+                        <div className="bg-white/5 p-3 rounded-full">
                           <Lock className="w-8 h-8 text-[var(--color-hornette-muted)]" />
                         </div>
                       ) : (
-                        <div className="bg-white/10 p-2 rounded-full group-hover:bg-white/20 transition-colors">
+                        <div className="bg-white/10 p-3 rounded-full group-hover:bg-white/20 transition-colors">
                           <Circle className="w-8 h-8 text-white/50" />
                         </div>
                       )}
                     </div>
                     <div>
-                      <div className="flex items-center gap-3 mb-1">
+                      <div className="flex flex-wrap items-center gap-3 mb-1">
                         <span className={`text-xs font-bold uppercase tracking-wider ${isCompleted ? "text-[var(--color-hornette-primary)]" : "text-gray-400"}`}>
                           Sesión {session.id}
                         </span>
                         <span className="text-xs text-gray-500 bg-white/5 px-2 py-0.5 rounded-md">
                           {session.duration}
                         </span>
+                        <span className="text-xs font-bold px-2 py-0.5 rounded-md border" style={{ borderColor: isCompleted ? 'var(--color-hornette-primary)' : 'rgba(255,255,255,0.1)', color: isCompleted ? 'var(--color-hornette-primary)' : 'rgba(255,255,255,0.5)'}}>
+                          {session.emoji} {session.badge}
+                        </span>
                       </div>
-                      <h3 className={`font-bold text-xl ${isCompleted ? "text-white" : !isUnlocked ? "text-gray-500" : "text-gray-100"}`}>
+                      <h3 className={`font-bold text-xl mt-1 ${isCompleted ? "text-white" : !isUnlocked ? "text-gray-500" : "text-gray-100"}`}>
                         {session.title}
                       </h3>
                     </div>
