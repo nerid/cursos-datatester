@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/lib/supabase";
 import { useParams, useRouter } from "next/navigation";
+import Quiz from "@/components/Quiz";
 
 function CopyableBlock({ content, label = "Prompt", type = "code" }: { content: string, label?: string, type?: "code" | "text" }) {
   const [copied, setCopied] = useState(false);
@@ -46,6 +47,8 @@ export default function SessionPage() {
   const { user } = useAuth();
   const [currentStep, setCurrentStep] = useState(0);
   const [isMarkingCompleted, setIsMarkingCompleted] = useState(false);
+  const [showQuiz, setShowQuiz] = useState(false);
+  const [quizPassed, setQuizPassed] = useState(false);
   
   const userName = user?.displayName?.split(' ')[0] || user?.email?.split('@')[0] || "Estudiante";
   const sessionId = parseInt(params?.sessionId as string) || 1;
@@ -357,7 +360,12 @@ export default function SessionPage() {
                           <button
                             onClick={() => {
                               if (index === steps.length - 1) {
-                                markSessionCompleted();
+                                if (sessionId === 1) {
+                                  setShowQuiz(true);
+                                  setCurrentStep(prev => prev + 1);
+                                } else {
+                                  markSessionCompleted();
+                                }
                               } else {
                                 setCurrentStep(prev => prev + 1);
                               }
@@ -368,7 +376,9 @@ export default function SessionPage() {
                             <CheckCircle className="w-5 h-5" />
                             {isMarkingCompleted 
                               ? "GUARDANDO..." 
-                              : index === steps.length - 1 ? "FINALIZAR SESIÓN" : "LISTO, SIGUIENTE PASO"}
+                              : index === steps.length - 1 
+                                ? (sessionId === 1 ? "IR AL TEST DE EVALUACIÓN" : "FINALIZAR SESIÓN")
+                                : "LISTO, SIGUIENTE PASO"}
                           </button>
                         </motion.div>
                       )}
@@ -385,7 +395,16 @@ export default function SessionPage() {
             })}
           </AnimatePresence>
 
-          {currentStep === steps.length && (
+          {currentStep === steps.length && showQuiz && !quizPassed && (
+            <div className="pt-8 relative z-20">
+              <Quiz onSuccess={() => {
+                setQuizPassed(true);
+                markSessionCompleted();
+              }} />
+            </div>
+          )}
+
+          {((currentStep === steps.length && !showQuiz) || quizPassed) && (
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}

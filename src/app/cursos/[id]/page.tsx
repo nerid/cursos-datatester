@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle, Circle, ArrowLeft, Download } from "lucide-react";
+import { CheckCircle, Circle, ArrowLeft, Download, Lock } from "lucide-react";
 import Link from "next/link";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/lib/supabase";
@@ -47,26 +47,8 @@ export default function CoursePage() {
     }
   };
 
-  const toggleSession = async (sessionId: number) => {
-    if (!user) return;
-    
-    let updatedSessions = [...completedSessions];
-    if (updatedSessions.includes(sessionId)) {
-      updatedSessions = updatedSessions.filter(id => id !== sessionId);
-    } else {
-      updatedSessions.push(sessionId);
-    }
-    
-    setCompletedSessions(updatedSessions);
-
-    // Save to Supabase
-    await supabase.from('user_progress').upsert({
-      user_id: user.uid,
-      course_id: params?.id,
-      completed_sessions: updatedSessions,
-      updated_at: new Date().toISOString()
-    });
-  };
+  // El toggle manual fue deshabilitado para forzar que terminen la sesión con el test
+  // const toggleSession = async (sessionId: number) => { ... }
 
   if (params?.id !== "ai-basico") {
     return <div className="p-12 text-center text-white">Curso no encontrado o próximamente.</div>;
@@ -111,6 +93,8 @@ export default function CoursePage() {
           <div className="space-y-4">
             {sessions.map((session, index) => {
               const isCompleted = completedSessions.includes(session.id);
+              const isUnlocked = session.id === 1 || completedSessions.includes(session.id - 1);
+              
               return (
                 <motion.div
                   key={session.id}
@@ -120,20 +104,21 @@ export default function CoursePage() {
                   className={`flex flex-col sm:flex-row items-start sm:items-center justify-between p-5 rounded-xl border transition-all ${
                     isCompleted 
                       ? "bg-[var(--color-hornette-primary)]/10 border-[var(--color-hornette-primary)]/30" 
-                      : "bg-white/5 border-white/5 hover:border-white/20"
+                      : !isUnlocked
+                        ? "bg-black/40 border-white/5 opacity-50"
+                        : "bg-white/5 border-white/5 hover:border-white/20"
                   }`}
                 >
                   <div className="flex items-center gap-4 mb-4 sm:mb-0">
-                    <button 
-                      onClick={() => toggleSession(session.id)}
-                      className="focus:outline-none hover:scale-110 transition-transform"
-                    >
+                    <div className="flex-shrink-0">
                       {isCompleted ? (
                         <CheckCircle className="w-7 h-7 text-[var(--color-hornette-primary)] drop-shadow-[0_0_8px_rgba(255,204,0,0.5)]" />
+                      ) : !isUnlocked ? (
+                        <Lock className="w-7 h-7 text-[var(--color-hornette-muted)]" />
                       ) : (
-                        <Circle className="w-7 h-7 text-[var(--color-hornette-muted)] hover:text-white" />
+                        <Circle className="w-7 h-7 text-[var(--color-hornette-muted)]" />
                       )}
-                    </button>
+                    </div>
                     <div>
                       <h3 className={`font-semibold text-lg ${isCompleted ? "text-white" : "text-gray-200"}`}>
                         Sesión {session.id}: {session.title}
@@ -141,12 +126,17 @@ export default function CoursePage() {
                       <p className="text-sm text-[var(--color-hornette-muted)] mt-1">{session.duration}</p>
                     </div>
                   </div>
-                  
-                  <Link href={`/cursos/${params?.id}/${session.id}`}>
-                    <button className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-white/10 hover:bg-[var(--color-hornette-primary)] hover:text-black text-white text-sm font-bold tracking-wider transition-all">
-                      {isCompleted ? "REPASAR" : "COMENZAR"}
+                  {isUnlocked ? (
+                    <Link href={`/cursos/${params?.id}/${session.id}`}>
+                      <button className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-white/10 hover:bg-[var(--color-hornette-primary)] hover:text-black text-white text-sm font-bold tracking-wider transition-all">
+                        {isCompleted ? "REPASAR" : "COMENZAR"}
+                      </button>
+                    </Link>
+                  ) : (
+                    <button disabled className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-white/5 text-[var(--color-hornette-muted)] text-sm font-bold tracking-wider cursor-not-allowed">
+                      BLOQUEADO
                     </button>
-                  </Link>
+                  )}
                 </motion.div>
               );
             })}
