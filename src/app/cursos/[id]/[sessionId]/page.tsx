@@ -323,8 +323,8 @@ export default function SessionPage() {
 
                       {isCurrent && index < steps.length && (
                         <motion.div 
-                          initial={{ opacity: 0, mt: 0 }}
-                          animate={{ opacity: 1, mt: 32 }}
+                          initial={{ opacity: 0, marginTop: 0 }}
+                          animate={{ opacity: 1, marginTop: 32 }}
                           transition={{ delay: 0.5 }}
                         >
                           <button
