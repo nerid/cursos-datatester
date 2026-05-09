@@ -39,7 +39,7 @@ export default function CoursePage() {
         .select('completed_sessions')
         .eq('user_id', user.uid)
         .eq('course_id', params?.id)
-        .single();
+        .maybeSingle();
       
       if (data && !error && data.completed_sessions) {
         const merged = Array.from(new Set([...data.completed_sessions, ...localSessions]));
@@ -163,15 +163,15 @@ export default function CoursePage() {
                   <div className="flex items-center gap-5 mb-4 sm:mb-0 relative z-10">
                     <div className="flex-shrink-0 relative">
                       {isCompleted ? (
-                        <div className="bg-[var(--color-hornette-primary)]/20 p-3 rounded-full">
-                          <CheckCircle className="w-8 h-8 text-[var(--color-hornette-primary)] drop-shadow-[0_0_10px_rgba(255,204,0,0.8)]" />
+                        <div className="bg-[var(--color-hornette-primary)]/20 p-3 rounded-full flex items-center justify-center w-14 h-14">
+                          <span className="text-2xl drop-shadow-[0_0_10px_rgba(255,204,0,0.8)]">{session.emoji}</span>
                         </div>
                       ) : !isUnlocked ? (
-                        <div className="bg-white/5 p-3 rounded-full">
+                        <div className="bg-white/5 p-3 rounded-full flex items-center justify-center w-14 h-14">
                           <Lock className="w-8 h-8 text-[var(--color-hornette-muted)]" />
                         </div>
                       ) : (
-                        <div className="bg-white/10 p-3 rounded-full group-hover:bg-white/20 transition-colors">
+                        <div className="bg-white/10 p-3 rounded-full group-hover:bg-white/20 transition-colors flex items-center justify-center w-14 h-14">
                           <Circle className="w-8 h-8 text-white/50" />
                         </div>
                       )}
@@ -184,9 +184,11 @@ export default function CoursePage() {
                         <span className="text-xs text-gray-500 bg-white/5 px-2 py-0.5 rounded-md">
                           {session.duration}
                         </span>
-                        <span className="text-xs font-bold px-2 py-0.5 rounded-md border" style={{ borderColor: isCompleted ? 'var(--color-hornette-primary)' : 'rgba(255,255,255,0.1)', color: isCompleted ? 'var(--color-hornette-primary)' : 'rgba(255,255,255,0.5)'}}>
-                          {session.emoji} {session.badge}
-                        </span>
+                        {isCompleted && (
+                          <span className="text-xs font-bold px-2 py-0.5 rounded-md border border-[var(--color-hornette-primary)] text-[var(--color-hornette-primary)]">
+                            {session.badge}
+                          </span>
+                        )}
                       </div>
                       <h3 className={`font-bold text-xl mt-1 ${isCompleted ? "text-white" : !isUnlocked ? "text-gray-500" : "text-gray-100"}`}>
                         {session.title}

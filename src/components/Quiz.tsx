@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, XCircle, ArrowRight, RefreshCw, AlertTriangle, Circle } from 'lucide-react';
 
-const allQuestions = [
+const session1Questions = [
   {
     q: "¿Cuál es la definición fundamental de la Inteligencia Artificial más simplificada?",
     options: [
@@ -203,6 +203,88 @@ const allQuestions = [
   }
 ];
 
+const session2Questions = [
+  {
+    q: "¿Cuál es la función principal que diferencia a NotebookLM de un chatbot de inteligencia artificial convencional?",
+    options: ["Basa sus respuestas únicamente en los documentos proporcionados por el usuario.", "Tiene una voz hiperrealista para leerte las respuestas.", "Genera imágenes a partir de texto.", "Requiere conocimientos avanzados de programación para ser utilizado."],
+    correctAnswer: "Basa sus respuestas únicamente en los documentos proporcionados por el usuario.",
+    explanation: "A diferencia de ChatGPT que usa toda la internet, NotebookLM funciona exclusivamente como un experto en los documentos que le subes."
+  },
+  {
+    q: "De acuerdo con el material, ¿cuál es el límite máximo de tamaño permitido para un solo archivo cargado en NotebookLM?",
+    options: ["100 MB o 500,000 palabras por documento.", "No hay límite.", "50 MB.", "10 MB."],
+    correctAnswer: "100 MB o 500,000 palabras por documento.",
+    explanation: "NotebookLM permite fuentes grandes, de hasta 500k palabras por archivo o 100MB si es PDF."
+  },
+  {
+    q: "En el panel de Studio, ¿qué herramienta permite visualizar la estructura de los temas de un cuaderno mediante cejillas expandibles?",
+    options: ["La guía de estudio (Tabla de contenidos).", "El índice de contenidos.", "El diagrama de red.", "El generador de resúmenes automáticos."],
+    correctAnswer: "La guía de estudio (Tabla de contenidos).",
+    explanation: "La guía de estudio organiza y estructura la información principal permitiendo abrir o cerrar temas."
+  },
+  {
+    q: "¿Qué indica el uso de números pequeños (índices) en las respuestas del chat de NotebookLM?",
+    options: ["Son las citas directas o referencias exactas al documento de origen donde encontró la información.", "Indican el tiempo que tardó en generar la respuesta.", "Es una calificación del 1 al 10 sobre qué tan buena es su respuesta.", "Son los números de página obligatorios."],
+    correctAnswer: "Son las citas directas o referencias exactas al documento de origen donde encontró la información.",
+    explanation: "Estos marcadores son hipervínculos a la parte exacta del documento que sirvió como fuente de la información."
+  },
+  {
+    q: "¿Cuál es la ventaja ética de utilizar una 'IA basada en fuentes' como NotebookLM en el ámbito profesional?",
+    options: ["No se inventa la información (reduce alucinaciones) y los datos no se usan para entrenar al modelo público de Google.", "Es completamente gratuita de por vida.", "Permite plagiar artículos sin ser detectado.", "No requiere permisos especiales para usar datos confidenciales públicos."],
+    correctAnswer: "No se inventa la información (reduce alucinaciones) y los datos no se usan para entrenar al modelo público de Google.",
+    explanation: "Al limitarse a las fuentes, minimiza las alucinaciones. Además, ofrece privacidad porque tus documentos no alimentan la base de datos general."
+  },
+  {
+    q: "¿Qué funcionalidad permite a NotebookLM organizar automáticamente más de 50 fuentes en categorías como 'nutrición' o 'sueño'?",
+    options: ["Las etiquetas o tags inteligentes.", "Las carpetas del sistema.", "La búsqueda avanzada con regex.", "Los resúmenes diarios en el correo."],
+    correctAnswer: "Las etiquetas o tags inteligentes.",
+    explanation: "Las fuentes se pueden etiquetar para seleccionarlas o filtrarlas de forma más ágil en el chat."
+  },
+  {
+    q: "Al crear una 'Guía de estudio' en el panel Studio, ¿cuál de estos elementos se genera automáticamente para validar la comprensión?",
+    options: ["Preguntas frecuentes, cuestionarios de opción múltiple y glosarios.", "Un video explicativo en YouTube.", "Un podcast con voces generadas por IA.", "Un certificado oficial de Google."],
+    correctAnswer: "Preguntas frecuentes, cuestionarios de opción múltiple y glosarios.",
+    explanation: "La Guía de Estudio (Study Guide) puede producir material de apoyo educativo basado en las notas."
+  },
+  {
+    q: "¿cuál es el límite máximo de fuentes que se pueden incluir en un solo cuaderno?",
+    options: ["50 fuentes.", "10 fuentes.", "100 fuentes.", "No hay límite de fuentes."],
+    correctAnswer: "50 fuentes.",
+    explanation: "Actualmente NotebookLM permite subir un máximo de 50 fuentes por cada cuaderno."
+  },
+  {
+    q: "¿Cuál de las siguientes es una fuente de información 'no textual' que NotebookLM puede procesar?",
+    options: ["Archivos de audio (MP3/WAV) o videos de YouTube (mediante URL).", "Imágenes JPEG de vacaciones.", "Documentos en formato ZIP.", "Archivos ejecutables (.exe)."],
+    correctAnswer: "Archivos de audio (MP3/WAV) o videos de YouTube (mediante URL).",
+    explanation: "NotebookLM es multimodal y puede analizar el audio y los transcripciones de un video o archivo de audio."
+  },
+  {
+    q: "Para un docente, ¿cuál es la utilidad primordial de transformar un texto denso en una 'Guía de estudio' en NotebookLM?",
+    options: ["Extraer las ideas principales, generar preguntas de repaso y crear un resumen estructurado para los alumnos.", "Crear una presentación en PowerPoint.", "Para evitar leer el texto completo antes de la clase.", "Para traducirlo automáticamente a 50 idiomas diferentes."],
+    correctAnswer: "Extraer las ideas principales, generar preguntas de repaso y crear un resumen estructurado para los alumnos.",
+    explanation: "Facilita la labor docente al procesar lecturas pesadas y convertirlas en material didáctico."
+  },
+  {
+    q: "Si un usuario sube un audio en formato OGG a NotebookLM, ¿qué ocurre con esa fuente?",
+    options: ["NotebookLM no lo admite directamente, por eso se recomienda usar un conversor local para pasarlo a MP3 o subirlo a YouTube primero.", "NotebookLM lo transcribe instantáneamente.", "El archivo corrompe el cuaderno.", "Se borra a las 24 horas por políticas de privacidad."],
+    correctAnswer: "NotebookLM no lo admite directamente, por eso se recomienda usar un conversor local para pasarlo a MP3 o subirlo a YouTube primero.",
+    explanation: "El formato OGG a veces requiere conversión a formatos admitidos nativamente como MP3/WAV o enlazarse desde YouTube."
+  },
+  {
+    q: "¿Por qué se afirma que NotebookLM es más 'seguro' que un chat convencional como la versión gratuita de ChatGPT(y otros)?",
+    options: ["Porque no utiliza tus documentos privados o datos de las fuentes para entrenar otros modelos de IA de Google.", "Porque requiere huella dactilar para abrir cada documento.", "Porque cuenta con antivirus integrado.", "Porque sus servidores no están conectados a internet."],
+    correctAnswer: "Porque no utiliza tus documentos privados o datos de las fuentes para entrenar otros modelos de IA de Google.",
+    explanation: "Tus datos se mantienen en tu entorno de Drive y Google asegura no utilizarlos para el entrenamiento general de sus modelos públicos."
+  }
+];
+
+const questionBanks: Record<number, any[]> = {
+  1: session1Questions,
+  2: session2Questions,
+  3: [],
+  4: []
+};
+
 // Helper to shuffle array
 function shuffleArray(array: any[]) {
   const newArr = [...array];
@@ -214,10 +296,11 @@ function shuffleArray(array: any[]) {
 }
 
 interface QuizProps {
+  sessionId: number;
   onSuccess: () => void;
 }
 
-export default function Quiz({ onSuccess }: QuizProps) {
+export default function Quiz({ sessionId, onSuccess }: QuizProps) {
   const [questions, setQuestions] = useState<any[]>([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -227,11 +310,18 @@ export default function Quiz({ onSuccess }: QuizProps) {
 
   useEffect(() => {
     startQuiz();
-  }, []);
+  }, [sessionId]);
 
   const startQuiz = () => {
-    // Select 10 random questions
-    const shuffled = shuffleArray(allQuestions).slice(0, 10);
+    const bank = questionBanks[sessionId] || [];
+    if (bank.length === 0) {
+      setFinished(true); // Auto-pass if no quiz available
+      onSuccess();
+      return;
+    }
+    // Select up to 10 random questions
+    const limit = Math.min(10, bank.length);
+    const shuffled = shuffleArray(bank).slice(0, limit);
     // Shuffle options for each question
     const prepped = shuffled.map(q => ({
       ...q,

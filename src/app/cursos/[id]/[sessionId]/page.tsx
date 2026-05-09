@@ -70,7 +70,7 @@ export default function SessionPage() {
         .select('completed_sessions')
         .eq('user_id', user.uid)
         .eq('course_id', params?.id)
-        .single();
+        .maybeSingle();
         
       let updatedSessions = Array.from(new Set([...(currentProgress?.completed_sessions || []), ...localSessions]));
       if (!updatedSessions.includes(sessionId)) {
@@ -381,6 +381,63 @@ export default function SessionPage() {
               </p>
             </div>
           )
+        },
+        {
+          title: "📝 Plantillas de Prompts Listos para Usar",
+          icon: <PenTool className="w-6 h-6 text-purple-400" />,
+          content: (
+            <div className="space-y-6">
+              <p className="text-lg">Esta tabla proporciona fórmulas de prompts optimizadas para las necesidades específicas de cada perfil profesional, listas para ser copiadas y adaptadas.</p>
+              
+              <div className="space-y-4">
+                <CopyableBlock 
+                  label="Creación de planeación" 
+                  content="Actúa como un diseñador instruccional experto. Diseña una planeación de clase de 60 minutos para el tema [Tema] dirigida a alumnos de [Nivel Educativo]. Incluye un inicio rompehielo, desarrollo con actividad práctica y un cierre de evaluación rápida. El tono debe ser motivador." 
+                />
+                <CopyableBlock 
+                  label="Síntesis de Casos" 
+                  content="Como psicólogo clínico, analiza las siguientes notas de sesión anonimizadas: [Notas]. Identifica patrones de comportamiento, posibles distorsiones cognitivas y sugiere una tarea para el paciente que refuerce el trabajo en sesión. Mantén un tono profesional y ético." 
+                />
+                <CopyableBlock 
+                  label="Estructuración de contenido" 
+                  content="Soy un escritor trabajando en un [Libro/Artículo] sobre [Tema]. Ayúdame a expandir este esquema: [Esquema actual]. Sugiere 3 subtemas que no haya considerado y propón un gancho narrativo para el primer párrafo que capture la atención de lectores en Guadalajara." 
+                />
+                <CopyableBlock 
+                  label="Análisis Bibliográfico" 
+                  content="Actúa como un asistente de investigación senior. Compara los siguientes dos resúmenes de artículos: [Resumen 1] y [Resumen 2]. Identifica las brechas de investigación (lo que aún no se ha estudiado) y sugiere una pregunta de investigación original basada en estas brechas." 
+                />
+              </div>
+
+              <div className="bg-purple-500/10 border border-purple-500/20 p-5 rounded-xl mt-6">
+                <h4 className="font-bold text-purple-300 mb-3">Consejos para mejorar tus resultados:</h4>
+                <ul className="space-y-2 text-sm text-[var(--color-hornette-muted)]">
+                  <li><strong className="text-white">Asignación de Rol:</strong> Empieza siempre con "Actúa como..." para establecer el contexto experto.</li>
+                  <li><strong className="text-white">Iteración:</strong> Si el primer resultado no es perfecto, no lo borres. Pide ajustes como "Hazlo más formal" o "Añade ejemplos locales de Guadalajara".</li>
+                  <li><strong className="text-white">Anonimización:</strong> Nunca pegues nombres reales, direcciones o datos de contacto sensibles en la IA. Usa etiquetas como [Paciente A] o [Alumno X].</li>
+                </ul>
+              </div>
+
+              <h3 className="text-xl font-bold mt-8 mb-4 text-white">Prompts para imágenes</h3>
+              <div className="space-y-4">
+                <CopyableBlock 
+                  label="Reflejos de atardecer" 
+                  content="Convierte la imagen en 4K HD y agrega efectos húmedos después de la lluvia, haz un reflejo del atardecer la puesta de sol arriba, pero no lo difumines y debe de estar ordenado" 
+                />
+                <CopyableBlock 
+                  label="Retrato piel hiperrealista" 
+                  content="Ultra-detailed photorealistic skin: texture enhancement. Preserve original face, proportion expression and pose 1:1. Natural skin micro-relief with visible pores, fine skin grain, subel uneven texture. Micro wrinkles around eyes, lips. and nasolabial area, delicate natural creases. Visible vellus facial hair (peach fuzz) on cheeks, forehead and upper lip, very fine and realistic Natural skin imperfections: tiny kles, micro redness, slight tonal variation Realistic glossy highlights on skin, true light reflection, no artificial shine High-resolution beauty macro clarity, epidermis-level detail. Professional studio lighting emphasizing texture, soft directional light, controlled highlights. Shot on high-end full-frame camera, macro lens, RAW photo realism. Zero retouching, zero smoothing, no beauty filters, no Al plastic skin. Shot on high-end full-frame camera 85-105mm lens shallow depth of held, extreme realism, RAW photo look, editorial beauty photography, zero retouching, no Al plastic skin." 
+                />
+                <CopyableBlock 
+                  label="Quitar personas/elementos" 
+                  content="Utilizando esta imagen, elimina a la persona que está a la derecha/izquierda/fondo. Reconstruye el fondo naturalmente y mantén la iluminación y estilo originales." 
+                />
+                <CopyableBlock 
+                  label="Creación de un objeto" 
+                  content="I want to see how this was made" 
+                />
+              </div>
+            </div>
+          )
         }
       ];
     } else {
@@ -493,7 +550,7 @@ export default function SessionPage() {
                           <button
                             onClick={() => {
                               if (index === steps.length - 1) {
-                                if (sessionId === 1) {
+                                if (sessionId <= 4) {
                                   setShowQuiz(true);
                                   setCurrentStep(prev => prev + 1);
                                 } else {
@@ -510,7 +567,7 @@ export default function SessionPage() {
                             {isMarkingCompleted 
                               ? "GUARDANDO..." 
                               : index === steps.length - 1 
-                                ? (sessionId === 1 ? "IR AL TEST DE EVALUACIÓN" : "FINALIZAR SESIÓN")
+                                ? (sessionId <= 4 ? "IR AL TEST DE EVALUACIÓN" : "FINALIZAR SESIÓN")
                                 : "LISTO, SIGUIENTE PASO"}
                           </button>
                         </motion.div>
@@ -530,10 +587,13 @@ export default function SessionPage() {
 
           {currentStep === steps.length && showQuiz && !quizPassed && (
             <div className="pt-8 relative z-20">
-              <Quiz onSuccess={() => {
-                setQuizPassed(true);
-                markSessionCompleted();
-              }} />
+              <Quiz 
+                sessionId={sessionId}
+                onSuccess={() => {
+                  setQuizPassed(true);
+                  markSessionCompleted();
+                }} 
+              />
             </div>
           )}
 

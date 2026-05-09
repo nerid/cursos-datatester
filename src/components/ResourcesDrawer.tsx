@@ -2,13 +2,18 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { FolderOpen, X, FileText, Download, ExternalLink, HardDrive, Globe } from "lucide-react";
 
 export default function ResourcesDrawer() {
   const [isOpen, setIsOpen] = useState(false);
   const params = useParams();
+  const pathname = usePathname();
   const sessionId = parseInt(params?.sessionId as string) || 1;
+
+  const isInsideSession = pathname?.split('/').length > 3;
+
+  if (!isInsideSession) return null;
 
   return (
     <>
