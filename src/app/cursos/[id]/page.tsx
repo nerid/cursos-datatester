@@ -186,9 +186,7 @@ export default function CoursePage() {
                         <span className={`text-xs font-bold uppercase tracking-wider ${isCompleted ? "text-[var(--color-hornette-primary)]" : "text-gray-400"}`}>
                           Sesión {session.id}
                         </span>
-                        <span className="text-xs text-gray-500 bg-white/5 px-2 py-0.5 rounded-md">
-                          {session.duration}
-                        </span>
+
                         {isCompleted && (
                           <span className="text-xs font-bold px-2 py-0.5 rounded-md border border-[var(--color-hornette-primary)] text-[var(--color-hornette-primary)]">
                             {session.badge}
@@ -224,52 +222,7 @@ export default function CoursePage() {
           </div>
         </motion.div>
 
-        {completedSessions.length > 0 && (
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="bg-gradient-to-br from-[#121212] to-[#0a0a0a] rounded-3xl p-8 border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden"
-          >
-            {/* Soft decorative glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-hornette-primary)]/5 rounded-full blur-[80px] pointer-events-none" />
 
-            <h2 className="text-2xl font-bold mb-3 flex items-center gap-3 text-white">
-              <Download className="w-6 h-6 text-[var(--color-hornette-primary)]" />
-              Materiales desbloqueados
-            </h2>
-            <p className="text-[var(--color-hornette-muted)] mb-8">
-              Recursos exclusivos que has ganado por tu avance en el curso.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div className="p-5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between hover:bg-white/10 transition-all cursor-pointer group">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-white/5 rounded-lg group-hover:bg-white/10 transition-colors">
-                    <Download className="w-5 h-5 text-gray-300" />
-                  </div>
-                  <span className="font-semibold text-gray-200 group-hover:text-white transition-colors">Guía de Prompts.pdf</span>
-                </div>
-                <div className="text-xs font-bold uppercase tracking-wider text-gray-500 group-hover:text-[var(--color-hornette-primary)] transition-colors">
-                  Descargar
-                </div>
-              </div>
-              
-              {completedSessions.length >= 4 && (
-                <div className="p-5 rounded-xl bg-gradient-to-r from-[var(--color-hornette-primary)]/10 to-yellow-500/10 border border-[var(--color-hornette-primary)]/30 flex items-center justify-between hover:bg-[var(--color-hornette-primary)]/20 transition-all cursor-pointer group shadow-[0_0_20px_rgba(255,204,0,0.1)]">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 bg-[var(--color-hornette-primary)]/20 rounded-lg group-hover:bg-[var(--color-hornette-primary)]/30 transition-colors">
-                      <CheckCircle className="w-5 h-5 text-[var(--color-hornette-primary)]" />
-                    </div>
-                    <span className="font-semibold text-white">Certificado Básico.pdf</span>
-                  </div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-[var(--color-hornette-primary)]">
-                    Descargar
-                  </div>
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
       </main>
     </div>
   );

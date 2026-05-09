@@ -22,11 +22,11 @@ export default function ResourcesDrawer() {
         initial={{ x: 100 }}
         animate={{ x: 0 }}
         onClick={() => setIsOpen(true)}
-        className="fixed right-0 top-1/2 -translate-y-1/2 bg-[var(--color-hornette-primary)] text-black p-4 rounded-l-2xl shadow-[-5px_0_20px_rgba(255,204,0,0.3)] hover:shadow-[-5px_0_30px_rgba(255,204,0,0.5)] z-40 flex flex-col items-center gap-2 hover:bg-[var(--color-hornette-primary-hover)] transition-all group"
+        className="fixed right-0 top-1/2 -translate-y-1/2 bg-[var(--color-hornette-primary)] text-black px-4 py-8 rounded-l-2xl shadow-[-5px_0_20px_rgba(255,204,0,0.3)] hover:shadow-[-5px_0_30px_rgba(255,204,0,0.5)] z-40 flex flex-col items-center gap-4 hover:bg-[var(--color-hornette-primary-hover)] transition-all group"
       >
         <FolderOpen className="w-6 h-6 group-hover:scale-110 transition-transform" />
-        <span className="text-xs font-bold uppercase" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
-          Recursos Extra
+        <span className="text-sm font-bold uppercase tracking-[0.3em]" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
+          Recursos extra
         </span>
       </motion.button>
 
