@@ -5,10 +5,12 @@ import { BookOpen, Lock, PlayCircle, LogOut } from "lucide-react";
 import { auth } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
 import Link from "next/link";
+import { useAuth } from "@/components/AuthProvider";
 import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
   const router = useRouter();
+  const { user } = useAuth();
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -49,13 +51,23 @@ export default function Dashboard() {
           <div className="text-xl font-extrabold tracking-tight">
             DATA<span className="text-[var(--color-hornette-primary)]">TESTER</span>
           </div>
-          <button 
-            onClick={handleLogout}
-            className="flex items-center gap-2 text-sm font-medium text-[var(--color-hornette-muted)] hover:text-white transition-colors"
-          >
-            <LogOut className="w-4 h-4" />
-            Salir
-          </button>
+          <div className="flex items-center gap-6">
+            {user?.email === "nerideliezer@gmail.com" && (
+              <Link 
+                href="/admin"
+                className="flex items-center gap-2 text-sm font-bold text-[var(--color-hornette-primary)] hover:text-white transition-colors bg-[var(--color-hornette-primary)]/10 px-4 py-2 rounded-lg"
+              >
+                Panel Admin
+              </Link>
+            )}
+            <button 
+              onClick={handleLogout}
+              className="flex items-center gap-2 text-sm font-medium text-[var(--color-hornette-muted)] hover:text-white transition-colors"
+            >
+              <LogOut className="w-4 h-4" />
+              Salir
+            </button>
+          </div>
         </div>
       </nav>
 

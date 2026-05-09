@@ -45,7 +45,12 @@ export default function CoursePage() {
         const merged = Array.from(new Set([...data.completed_sessions, ...localSessions]));
         setCompletedSessions(merged);
         if (merged.length > data.completed_sessions.length) {
-          await supabase.from('user_progress').upsert({ user_id: user.uid, course_id: params?.id, completed_sessions: merged });
+          const payload: any = { user_id: user.uid, course_id: params?.id, completed_sessions: merged, email: user.email };
+          const { error: upsertError } = await supabase.from('user_progress').upsert(payload);
+          if (upsertError && upsertError.code === 'PGRST204') {
+            delete payload.email;
+            await supabase.from('user_progress').upsert(payload);
+          }
         }
       } else {
         setCompletedSessions(localSessions);

@@ -81,12 +81,19 @@ export default function SessionPage() {
       localStorage.setItem(lsKey, JSON.stringify(updatedSessions));
 
       // Save to Supabase
-      await supabase.from('user_progress').upsert({
+      const payload: any = {
         user_id: user.uid,
         course_id: params?.id,
         completed_sessions: updatedSessions,
+        email: user.email,
         updated_at: new Date().toISOString()
-      });
+      };
+      
+      const { error: upsertError } = await supabase.from('user_progress').upsert(payload);
+      if (upsertError && upsertError.code === 'PGRST204') {
+        delete payload.email;
+        await supabase.from('user_progress').upsert(payload);
+      }
       
       setCurrentStep(steps.length);
     } catch (error) {
