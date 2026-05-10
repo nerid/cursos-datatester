@@ -54,6 +54,14 @@ export default function CoursePage() {
         }
       } else {
         setCompletedSessions(localSessions);
+        if (localSessions.length > 0) {
+          const payload: any = { user_id: user.uid, course_id: params?.id, completed_sessions: localSessions, email: user.email };
+          const { error: upsertError } = await supabase.from('user_progress').upsert(payload);
+          if (upsertError && upsertError.code === 'PGRST204') {
+            delete payload.email;
+            await supabase.from('user_progress').upsert(payload);
+          }
+        }
       }
     } catch (error) {
       console.error("Error fetching progress", error);
