@@ -22,7 +22,7 @@ export default function LoginPage() {
     "giulia@demo.com", // Usuario demo solicitado
     "wickedestbenito@gmail.com",
     "leonie.runa@gmail.com",
-    "mvzalejandrasoltero@gmail.com"
+    "mvz.alejandra.soltero@gmail.com"
   ];
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -52,7 +52,12 @@ export default function LoginPage() {
         setError("Acceso denegado. Tu correo no está autorizado para acceder a estos cursos.");
       }
     } catch (err: any) {
-      setError("Error al iniciar sesión con Google. Asegúrate de tener la Autenticación habilitada en Firebase.");
+      console.error("Error Google Login:", err);
+      if (err.message?.includes("initial state") || err.message?.includes("sessionStorage") || err.code?.includes("redirect")) {
+        setError("Error de autenticación. Si abriste esto desde WhatsApp o Instagram, toca los 3 puntos arriba a la derecha y selecciona 'Abrir en el navegador' (Safari/Chrome).");
+      } else {
+        setError("Error al iniciar sesión con Google. Si estás en una app como WhatsApp, intenta abrir el enlace en tu navegador web normal (Safari/Chrome).");
+      }
     }
   };
 
