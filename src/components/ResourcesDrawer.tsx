@@ -53,7 +53,7 @@ export default function ResourcesDrawer() {
               <div className="p-6 border-b border-white/10 flex justify-between items-center bg-white/5">
                 <div className="flex items-center gap-3">
                   <FolderOpen className="w-6 h-6 text-[var(--color-hornette-primary)]" />
-                  <h2 className="text-xl font-bold">Kit de Recursos</h2>
+                  <h2 className="text-xl font-bold">Kit de recursos</h2>
                 </div>
                 <button 
                   onClick={() => setIsOpen(false)}
@@ -67,7 +67,7 @@ export default function ResourcesDrawer() {
                 
                 {/* Notion Prompts */}
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--color-hornette-muted)] mb-3">Casos de Uso</h3>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--color-hornette-muted)] mb-3">Casos de uso</h3>
                   <a 
                     href="https://www.notion.so/nerids/Casos-curso-2-358c1e4d80ee80f18ec6dde45adb5d58?source=copy_link"
                     target="_blank"
@@ -79,7 +79,7 @@ export default function ResourcesDrawer() {
                     </div>
                     <div>
                       <h4 className="font-bold text-white mb-1 flex items-center gap-2">
-                        Prompts Avanzados <ExternalLink className="w-3 h-3 text-[var(--color-hornette-muted)]" />
+                        Prompts avanzados <ExternalLink className="w-3 h-3 text-[var(--color-hornette-muted)]" />
                       </h4>
                       <p className="text-sm text-[var(--color-hornette-muted)]">Diferentes casos de uso reales en Notion para aplicar lo aprendido.</p>
                     </div>
@@ -88,7 +88,7 @@ export default function ResourcesDrawer() {
 
                 {/* Google Drive */}
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--color-hornette-muted)] mb-3">Archivos del Curso</h3>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--color-hornette-muted)] mb-3">Archivos de apoyo</h3>
                   <a 
                     href="#"
                     target="_blank"
@@ -109,7 +109,7 @@ export default function ResourcesDrawer() {
 
                 {/* Software */}
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--color-hornette-muted)] mb-3">Software Recomendado</h3>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--color-hornette-muted)] mb-3">Software recomendado</h3>
                   <a 
                     href="https://file-converter.io/download.html"
                     target="_blank"
@@ -131,7 +131,7 @@ export default function ResourcesDrawer() {
                 {/* Session 2 Resources */}
                 {sessionId >= 2 && (
                   <div>
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--color-hornette-muted)] mb-3">Recursos Sesión 2</h3>
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--color-hornette-muted)] mb-3">Recursos sesión 2</h3>
                     <a 
                       href="https://chromewebstore.google.com/"
                       target="_blank"

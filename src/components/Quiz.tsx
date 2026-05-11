@@ -363,7 +363,7 @@ export default function Quiz({ sessionId, onSuccess }: QuizProps) {
     const passed = score >= 8;
     return (
       <div className="glass-effect rounded-2xl p-8 text-center max-w-2xl mx-auto border border-white/10">
-        <h2 className="text-3xl font-bold mb-6">Resultados del Test</h2>
+        <h2 className="text-3xl font-bold mb-6">Resultados del test</h2>
         <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center text-4xl font-bold mb-6"
              style={{ background: passed ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)', color: passed ? '#4ade80' : '#f87171' }}>
           {score} / 10
@@ -376,7 +376,7 @@ export default function Quiz({ sessionId, onSuccess }: QuizProps) {
               onClick={onSuccess}
               className="px-8 py-4 rounded-xl bg-[var(--color-hornette-primary)] text-black font-bold hover:bg-[var(--color-hornette-primary-hover)] transition-colors w-full"
             >
-              FINALIZAR Y DESBLOQUEAR SESIÓN 2
+              Finalizar y desbloquear sesión 2
             </button>
           </div>
         ) : (
@@ -392,7 +392,7 @@ export default function Quiz({ sessionId, onSuccess }: QuizProps) {
               onClick={startQuiz}
               className="px-8 py-4 rounded-xl bg-white/10 text-white font-bold hover:bg-white/20 transition-colors w-full flex items-center justify-center gap-2"
             >
-              <RefreshCw className="w-5 h-5" /> REPETIR EL TEST
+              <RefreshCw className="w-5 h-5" /> Repetir el test
             </button>
           </div>
         )}
@@ -406,7 +406,7 @@ export default function Quiz({ sessionId, onSuccess }: QuizProps) {
   return (
     <div className="glass-effect rounded-2xl p-6 md:p-8 max-w-3xl mx-auto border border-[var(--color-hornette-primary)]/30">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-[var(--color-hornette-primary)] font-bold uppercase tracking-widest text-xs">Evaluación de Conocimientos</h3>
+        <h3 className="text-[var(--color-hornette-primary)] font-bold uppercase tracking-widest text-xs">Evaluación de conocimientos</h3>
         <span className="bg-white/10 text-white text-xs px-3 py-1 rounded-full font-mono">Pregunta {currentIdx + 1}/10</span>
       </div>
 
@@ -465,14 +465,14 @@ export default function Quiz({ sessionId, onSuccess }: QuizProps) {
             onClick={handleCheck}
             className="px-6 py-3 rounded-xl bg-[var(--color-hornette-primary)] text-black font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[var(--color-hornette-primary-hover)] transition-colors"
           >
-            COMPROBAR
+            Comprobar
           </button>
         ) : (
           <button
             onClick={handleNext}
             className="px-6 py-3 rounded-xl bg-white/20 text-white font-bold hover:bg-white/30 transition-colors flex items-center gap-2"
           >
-            {currentIdx === questions.length - 1 ? "VER RESULTADOS" : "SIGUIENTE"} <ArrowRight className="w-5 h-5" />
+            {currentIdx === questions.length - 1 ? "Ver resultados" : "Siguiente"} <ArrowRight className="w-5 h-5" />
           </button>
         )}
       </div>

@@ -49,7 +49,7 @@ export default function LoginPage() {
       
       if (result.user.email && !ALLOWED_EMAILS.includes(result.user.email)) {
         await auth.signOut();
-        setError("Acceso denegado. Tu correo no está autorizado para acceder a estos cursos.");
+        setError("Acceso denegado. Tu correo no está autorizado para acceder a este material.");
       }
     } catch (err: any) {
       console.error("Error Google Login:", err);
@@ -78,7 +78,7 @@ export default function LoginPage() {
             DATA<span className="text-[var(--color-hornette-primary)]">TESTER</span>
           </h1>
           <p className="text-[var(--color-hornette-muted)] text-sm tracking-widest uppercase">
-            Plataforma de Cursos
+            Highlights
           </p>
         </div>
 
@@ -93,7 +93,7 @@ export default function LoginPage() {
 
         <form onSubmit={handleLogin} className="space-y-5">
           <p className="text-center text-[var(--color-hornette-muted)] text-sm mb-4">
-            Acceso restringido solo para alumnos inscritos.
+            Acceso restringido solo para alumnos.
           </p>
           
           <div>

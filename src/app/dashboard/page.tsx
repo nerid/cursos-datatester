@@ -20,7 +20,7 @@ export default function Dashboard() {
   const courses = [
     {
       id: "ai-basico",
-      title: "AI Básico",
+      title: "AI básico",
       description: "Elementos básicos y prácticos de la inteligencia artificial.",
       status: "active",
       icon: <BookOpen className="w-8 h-8 text-black" />,
@@ -28,7 +28,7 @@ export default function Dashboard() {
     },
     {
       id: "ai-intermedio",
-      title: "AI Intermedio",
+      title: "AI intermedio",
       description: "Modelos de lenguaje, automatización avanzada y fine-tuning.",
       status: "upcoming",
       icon: <Lock className="w-8 h-8 text-[var(--color-hornette-muted)]" />,
@@ -36,7 +36,7 @@ export default function Dashboard() {
     },
     {
       id: "ai-avanzado",
-      title: "AI Avanzado",
+      title: "AI avanzado",
       description: "Creación de agentes autónomos y arquitecturas complejas.",
       status: "upcoming",
       icon: <Lock className="w-8 h-8 text-[var(--color-hornette-muted)]" />,
@@ -77,9 +77,9 @@ export default function Dashboard() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-12"
         >
-          <h1 className="text-4xl font-bold mb-4">Mis cursos</h1>
+          <h1 className="text-4xl font-bold mb-4">Mis highlights</h1>
           <p className="text-[var(--color-hornette-muted)] text-lg">
-            Continúa tu aprendizaje y domina la inteligencia artificial.
+            Repasa los puntos clave y el material de apoyo.
           </p>
         </motion.div>
 
@@ -151,7 +151,7 @@ export default function Dashboard() {
                   className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-white/10 text-white font-medium hover:bg-[var(--color-hornette-primary)] hover:text-black transition-colors"
                 >
                   <PlayCircle className="w-5 h-5" />
-                  Ir al curso
+                  Ver contenido
                 </Link>
               ) : (
                 <button 

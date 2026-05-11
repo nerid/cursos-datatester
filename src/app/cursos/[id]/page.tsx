@@ -74,7 +74,7 @@ export default function CoursePage() {
   };
 
   if (params?.id !== "ai-basico") {
-    return <div className="p-12 text-center text-white">Curso no encontrado o próximamente.</div>;
+    return <div className="p-12 text-center text-white">Material no encontrado o próximamente.</div>;
   }
 
   const progressPercentage = (completedSessions.length / sessions.length) * 100;
@@ -106,7 +106,7 @@ export default function CoursePage() {
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-            Módulo: AI Básico
+            Módulo: AI básico
           </div>
         </div>
       </nav>
@@ -124,7 +124,7 @@ export default function CoursePage() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-10">
             <div className="flex-1">
               <div className="inline-block px-3 py-1 bg-[var(--color-hornette-primary)]/10 border border-[var(--color-hornette-primary)]/20 rounded-full text-[var(--color-hornette-primary)] text-xs font-bold tracking-widest mb-4">
-                CURSO EN CURSO
+                Material de apoyo
               </div>
               <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-white drop-shadow-lg">
                 Fundamentos de inteligencia artificial

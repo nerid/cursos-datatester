@@ -145,7 +145,7 @@ export default function SessionPage() {
                  <div className="flex items-start gap-3">
                   <DownloadIcon className="w-8 h-8 text-green-400 shrink-0 mt-1" />
                   <div>
-                    <h4 className="font-bold text-white">Extensión File Converter (Solo Windows)</h4>
+                    <h4 className="font-bold text-white">Extensión File converter (solo Windows)</h4>
                     <p className="text-sm text-[var(--color-hornette-muted)] mt-1">
                       Esta herramienta nos servirá para cambiar formatos de audio, PDF o imagen con un solo clic derecho directamente desde tu explorador de archivos. 
                       <strong className="text-white block mt-2">🛡️ 100% Segura y sin virus. Es una herramienta de código abierto muy reconocida en la comunidad técnica.</strong>
@@ -619,7 +619,7 @@ export default function SessionPage() {
               <p className="text-xl text-[var(--color-hornette-muted)] mb-8">Gran trabajo, {userName}. Has completado esta parte de tu entrenamiento.</p>
               <Link href={`/cursos/${params?.id}`}>
                 <button className="px-8 py-4 rounded-xl bg-white/10 text-white font-bold tracking-wide hover:bg-white/20 transition-colors border border-white/20">
-                  Volver al curso
+                  Volver a los highlights
                 </button>
               </Link>
             </motion.div>
