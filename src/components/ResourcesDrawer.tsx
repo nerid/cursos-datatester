@@ -90,7 +90,7 @@ export default function ResourcesDrawer() {
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--color-hornette-muted)] mb-3">Archivos de apoyo</h3>
                   <a 
-                    href="#"
+                    href="https://drive.google.com/drive/u/0/folders/1KOhtpHKRqXm2sw-8dviNFuRssVFYBm3J"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-[var(--color-hornette-primary)]/50 transition-all group"
