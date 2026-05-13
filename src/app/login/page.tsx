@@ -23,7 +23,8 @@ export default function LoginPage() {
     "wickedestbenito@gmail.com",
     "leonie.runa@gmail.com",
     "mvz.alejandra.soltero@gmail.com",
-    "mvzalejandrasoltero@gmail.com"
+    "mvzalejandrasoltero@gmail.com",
+    "zyanya.solorzano@gmail.com"
   ];
 
   const handleLogin = async (e: React.FormEvent) => {

@@ -9,6 +9,7 @@ import { supabase } from "@/lib/supabase";
 import { useParams, useRouter } from "next/navigation";
 import Quiz from "@/components/Quiz";
 import InfoTooltip from "@/components/InfoTooltip";
+import MeetingScheduler from "@/components/MeetingScheduler";
 
 function CopyableBlock({ content, label = "Prompt", type = "code" }: { content: string, label?: string, type?: "code" | "text" }) {
   const [copied, setCopied] = useState(false);
@@ -50,8 +51,11 @@ export default function SessionPage() {
   const [isMarkingCompleted, setIsMarkingCompleted] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
   const [quizPassed, setQuizPassed] = useState(false);
+  const [showScheduler, setShowScheduler] = useState(false);
   
-  const userName = user?.displayName?.split(' ')[0] || user?.email?.split('@')[0] || "Estudiante";
+  const userName = user?.email === "zyanya.solorzano@gmail.com" 
+    ? "Vjejoslavovna" 
+    : user?.displayName?.split(' ')[0] || user?.email?.split('@')[0] || "Estudiante";
   const sessionId = parseInt(params?.sessionId as string) || 1;
 
   const markSessionCompleted = async () => {
@@ -534,9 +538,22 @@ export default function SessionPage() {
                 onSuccess={() => {
                   setQuizPassed(true);
                   markSessionCompleted();
+                  if (sessionId === 4) {
+                    setShowScheduler(true);
+                  }
                 }} 
               />
             </div>
+          )}
+
+          {showScheduler && (
+            <MeetingScheduler 
+              user={user} 
+              onClose={() => {
+                setShowScheduler(false);
+                router.push(`/cursos/${params?.id}`);
+              }} 
+            />
           )}
 
           {((currentStep === steps.length && !showQuiz) || quizPassed) && (

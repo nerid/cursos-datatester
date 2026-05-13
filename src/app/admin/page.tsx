@@ -15,12 +15,22 @@ interface UserProgress {
   updated_at: string;
 }
 
+interface Appointment {
+  id: string;
+  user_email: string;
+  date: string;
+  time_slot: string;
+  created_at: string;
+}
+
 export default function AdminPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
   const [progressData, setProgressData] = useState<UserProgress[]>([]);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [fetching, setFetching] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<"progress" | "appointments">("progress");
 
   useEffect(() => {
     if (!loading) {
@@ -36,13 +46,24 @@ export default function AdminPage() {
     setFetching(true);
     setError(null);
     try {
-      const { data, error: sbError } = await supabase
+      // Fetch Progress
+      const { data: progData, error: progError } = await supabase
         .from('user_progress')
         .select('*')
         .order('updated_at', { ascending: false });
 
-      if (sbError) throw sbError;
-      setProgressData(data || []);
+      if (progError) throw progError;
+      setProgressData(progData || []);
+
+      // Fetch Appointments
+      const { data: apptData, error: apptError } = await supabase
+        .from('appointments')
+        .select('*')
+        .order('date', { ascending: true });
+
+      if (!apptError) {
+        setAppointments(apptData || []);
+      }
     } catch (err: any) {
       setError(err.message || "Error al cargar datos");
     } finally {
@@ -108,93 +129,164 @@ export default function AdminPage() {
           </motion.div>
         )}
 
-        <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hornette-shadow">
-          <div className="p-6 border-b border-white/10 flex justify-between items-center bg-black/20">
-            <h2 className="text-xl font-bold">Progreso de usuarios</h2>
-            <span className="bg-[var(--color-hornette-primary)] text-black font-bold px-3 py-1 rounded-full text-sm">
-              {progressData.length} participantes
-            </span>
-          </div>
+        <div className="flex gap-4 mb-8">
+          <button 
+            onClick={() => setActiveTab("progress")}
+            className={`px-6 py-3 rounded-xl font-bold transition-all ${activeTab === "progress" ? "bg-[var(--color-hornette-primary)] text-black shadow-[0_0_20px_rgba(255,204,0,0.3)]" : "bg-white/5 text-[var(--color-hornette-muted)] hover:bg-white/10"}`}
+          >
+            Progreso
+          </button>
+          <button 
+            onClick={() => setActiveTab("appointments")}
+            className={`px-6 py-3 rounded-xl font-bold transition-all ${activeTab === "appointments" ? "bg-[var(--color-hornette-primary)] text-black shadow-[0_0_20px_rgba(255,204,0,0.3)]" : "bg-white/5 text-[var(--color-hornette-muted)] hover:bg-white/10"}`}
+          >
+            Citas 1:1 ({appointments.length})
+          </button>
+        </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-white/5 border-b border-white/10">
-                  <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Usuario / correo</th>
-                  <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Sesiones completadas</th>
-                  <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Progreso global</th>
-                  <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Última actividad</th>
-                </tr>
-              </thead>
-              <tbody>
-                {progressData.length === 0 ? (
-                  <tr>
-                    <td colSpan={4} className="p-8 text-center text-gray-500">
-                      Aún no hay participantes con progreso registrado.
-                    </td>
+        {activeTab === "progress" ? (
+          <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hornette-shadow">
+            {/* Progress Table */}
+            <div className="p-6 border-b border-white/10 flex justify-between items-center bg-black/20">
+              <h2 className="text-xl font-bold">Progreso de usuarios</h2>
+              <span className="bg-[var(--color-hornette-primary)] text-black font-bold px-3 py-1 rounded-full text-sm">
+                {progressData.length} participantes
+              </span>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-white/5 border-b border-white/10">
+                    <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Usuario / correo</th>
+                    <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Sesiones completadas</th>
+                    <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Progreso global</th>
+                    <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Última actividad</th>
                   </tr>
-                ) : (
-                  progressData.map((row, i) => {
-                    const progressNum = Math.round((row.completed_sessions.length / 4) * 100);
-                    return (
+                </thead>
+                <tbody>
+                  {progressData.length === 0 ? (
+                    <tr>
+                      <td colSpan={4} className="p-8 text-center text-gray-500">
+                        Aún no hay participantes con progreso registrado.
+                      </td>
+                    </tr>
+                  ) : (
+                    progressData.map((row, i) => {
+                      const progressNum = Math.round((row.completed_sessions.length / 4) * 100);
+                      return (
+                        <motion.tr 
+                          key={row.user_id}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.05 }}
+                          className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                        >
+                          <td className="p-4">
+                            {row.email ? (
+                              <div className="font-medium text-white">{row.email}</div>
+                            ) : (
+                              <div className="font-mono text-xs text-gray-500 bg-black/40 px-2 py-1 rounded inline-block">
+                                {row.user_id}
+                              </div>
+                            )}
+                          </td>
+                          <td className="p-4">
+                            <div className="flex gap-1">
+                              {[1, 2, 3, 4].map(s => (
+                                <div 
+                                  key={s} 
+                                  className={`w-6 h-6 rounded flex items-center justify-center text-xs font-bold ${
+                                    row.completed_sessions.includes(s) 
+                                      ? "bg-[var(--color-hornette-primary)] text-black" 
+                                      : "bg-white/10 text-white/30"
+                                  }`}
+                                >
+                                  {s}
+                                </div>
+                              ))}
+                            </div>
+                          </td>
+                          <td className="p-4">
+                            <div className="flex items-center gap-3">
+                              <div className="w-24 h-2 bg-white/10 rounded-full overflow-hidden">
+                                <div 
+                                  className="h-full bg-[var(--color-hornette-primary)] transition-all duration-1000"
+                                  style={{ width: `${progressNum}%` }}
+                                />
+                              </div>
+                              <span className="text-sm font-bold">{progressNum}%</span>
+                              {progressNum === 100 && <Trophy className="w-4 h-4 text-[var(--color-hornette-primary)]" />}
+                            </div>
+                          </td>
+                          <td className="p-4 text-sm text-[var(--color-hornette-muted)]">
+                            {new Date(row.updated_at).toLocaleDateString("es-MX", { 
+                              day: '2-digit', month: 'short', year: 'numeric',
+                              hour: '2-digit', minute: '2-digit'
+                            })}
+                          </td>
+                        </motion.tr>
+                      );
+                    })
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : (
+          <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hornette-shadow">
+            {/* Appointments Table */}
+            <div className="p-6 border-b border-white/10 flex justify-between items-center bg-black/20">
+              <h2 className="text-xl font-bold">Citas agendadas (1:1)</h2>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-white/5 border-b border-white/10">
+                    <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Usuario</th>
+                    <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Fecha</th>
+                    <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Horario</th>
+                    <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Registrado el</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {appointments.length === 0 ? (
+                    <tr>
+                      <td colSpan={4} className="p-8 text-center text-gray-500">
+                        No hay citas agendadas todavía.
+                      </td>
+                    </tr>
+                  ) : (
+                    appointments.map((app, i) => (
                       <motion.tr 
-                        key={row.user_id}
+                        key={app.id}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.05 }}
                         className="border-b border-white/5 hover:bg-white/5 transition-colors"
                       >
+                        <td className="p-4 font-medium">{app.user_email}</td>
                         <td className="p-4">
-                          {row.email ? (
-                            <div className="font-medium text-white">{row.email}</div>
-                          ) : (
-                            <div className="font-mono text-xs text-gray-500 bg-black/40 px-2 py-1 rounded inline-block">
-                              {row.user_id}
-                            </div>
-                          )}
+                          <span className="bg-white/10 px-3 py-1 rounded-full text-sm font-bold">
+                            {app.date.split('-').reverse().join('/')}
+                          </span>
                         </td>
                         <td className="p-4">
-                          <div className="flex gap-1">
-                            {[1, 2, 3, 4].map(s => (
-                              <div 
-                                key={s} 
-                                className={`w-6 h-6 rounded flex items-center justify-center text-xs font-bold ${
-                                  row.completed_sessions.includes(s) 
-                                    ? "bg-[var(--color-hornette-primary)] text-black" 
-                                    : "bg-white/10 text-white/30"
-                                }`}
-                              >
-                                {s}
-                              </div>
-                            ))}
-                          </div>
-                        </td>
-                        <td className="p-4">
-                          <div className="flex items-center gap-3">
-                            <div className="w-24 h-2 bg-white/10 rounded-full overflow-hidden">
-                              <div 
-                                className="h-full bg-[var(--color-hornette-primary)] transition-all duration-1000"
-                                style={{ width: `${progressNum}%` }}
-                              />
-                            </div>
-                            <span className="text-sm font-bold">{progressNum}%</span>
-                            {progressNum === 100 && <Trophy className="w-4 h-4 text-[var(--color-hornette-primary)]" />}
-                          </div>
+                          <span className="text-[var(--color-hornette-primary)] font-bold">{app.time_slot}</span>
                         </td>
                         <td className="p-4 text-sm text-[var(--color-hornette-muted)]">
-                          {new Date(row.updated_at).toLocaleDateString("es-MX", { 
-                            day: '2-digit', month: 'short', year: 'numeric',
-                            hour: '2-digit', minute: '2-digit'
+                          {new Date(app.created_at).toLocaleDateString("es-MX", { 
+                            day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
                           })}
                         </td>
                       </motion.tr>
-                    );
-                  })
-                )}
-              </tbody>
-            </table>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        )}
       </main>
     </div>
   );
