@@ -10,8 +10,8 @@ import { useParams } from "next/navigation";
 
 const sessions = [
   { id: 1, title: "Fundamentos de inteligencia artificial", duration: "45 min", badge: "Pionero", emoji: "🌱" },
-  { id: 2, title: "NotebookLM: Tu cerebro secundario", duration: "60 min", badge: "Explorador", emoji: "🧠" },
-  { id: 3, title: "Imaginación aumentada – Creación visual con IA", duration: "50 min", badge: "Arquitecto", emoji: "🎨" },
+  { id: 2, title: "NotebookLM: tu cerebro secundario", duration: "60 min", badge: "Explorador", emoji: "🧠" },
+  { id: 3, title: "Imaginación aumentada – creación visual con IA", duration: "50 min", badge: "Arquitecto", emoji: "🎨" },
   { id: 4, title: "Casos de uso en el trabajo diario", duration: "40 min", badge: "Maestro", emoji: "👑" },
 ];
 
@@ -215,12 +215,12 @@ export default function CoursePage() {
                             ? "bg-transparent border border-[var(--color-hornette-primary)] text-[var(--color-hornette-primary)] hover:bg-[var(--color-hornette-primary)] hover:text-black hover:shadow-[0_0_20px_rgba(255,204,0,0.4)]"
                             : "bg-white text-black hover:bg-gray-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
                         }`}>
-                          {isCompleted ? "REPASAR" : "COMENZAR"}
+                          {isCompleted ? "Repasar" : "Comenzar"}
                         </button>
                       </Link>
                     ) : (
                       <button disabled className="w-full sm:w-auto px-8 py-3 rounded-xl bg-white/5 text-[var(--color-hornette-muted)] text-sm font-bold tracking-widest cursor-not-allowed border border-white/5">
-                        BLOQUEADO
+                        Bloqueado
                       </button>
                     )}
                   </div>

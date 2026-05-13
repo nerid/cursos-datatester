@@ -154,11 +154,11 @@ export default function SessionPage() {
                 </div>
               </a>
 
-              <a href="#" target="_blank" rel="noopener noreferrer" className="block p-4 rounded-xl bg-[var(--color-hornette-primary)]/10 border border-[var(--color-hornette-primary)]/30 hover:bg-[var(--color-hornette-primary)]/20 transition-all">
+              <a href="https://drive.google.com/drive/u/0/folders/1KOhtpHKRqXm2sw-8dviNFuRssVFYBm3J" target="_blank" rel="noopener noreferrer" className="block p-4 rounded-xl bg-[var(--color-hornette-primary)]/10 border border-[var(--color-hornette-primary)]/30 hover:bg-[var(--color-hornette-primary)]/20 transition-all">
                 <div className="flex items-center gap-3">
                   <ExternalLink className="w-8 h-8 text-[var(--color-hornette-primary)]" />
                   <div>
-                    <h4 className="font-bold text-white">Aquí está el Drive con recursos</h4>
+                    <h4 className="font-bold text-white">Carpeta de Google Drive con recursos</h4>
                     <p className="text-sm text-[var(--color-hornette-muted)]">Material extra y documentos para seguir la sesión.</p>
                   </div>
                 </div>
@@ -270,9 +270,16 @@ export default function SessionPage() {
                   />
                 </div>
               </div>
-              <p className="text-xs text-[var(--color-hornette-primary)] flex gap-2 items-center bg-[var(--color-hornette-primary)]/10 p-3 rounded-lg mt-4">
-                <Lightbulb className="w-4 h-4 shrink-0" />
-                Nota: Si la IA pone al jugador "flotando en el aire", corrige tu prompt siendo más específico: "que el balón         }
+              <div className="p-4 bg-pink-500/10 rounded-xl border border-pink-500/20 mt-4">
+                <p className="text-pink-300 font-medium flex items-center gap-2">
+                  <Lightbulb className="w-4 h-4 shrink-0" />
+                  Nota importante:
+                </p>
+                <p className="text-sm mt-1">Si la IA pone al jugador "flotando en el aire", corrige tu prompt siendo más específico: "que el balón toque el suelo". La IA aprende de tus correcciones.</p>
+              </div>
+            </div>
+          )
+        }
       ];
     } else if (sid === 3) {
       return [
@@ -327,12 +334,12 @@ export default function SessionPage() {
                 {/* Ejemplo 1 */}
                 <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
                   <div className="p-4 bg-blue-500/10 border-b border-white/10">
-                    <h4 className="font-bold text-blue-400">1. Educación: Ciclo del agua</h4>
+                    <h4 className="font-bold text-blue-400">1. Educación: ciclo del agua</h4>
                   </div>
                   <div className="p-4 space-y-4">
-                    <p className="text-sm text-gray-300"><strong>Objetivo:</strong> Portada para unidad didáctica clara y profesional.</p>
+                    <p className="text-sm text-gray-300"><strong>Objetivo:</strong> portada para unidad didáctica clara y profesional.</p>
                     <CopyableBlock 
-                      label="Prompt Sugerido" 
+                      label="Prompt sugerido" 
                       content="Infografía educativa 3D del ciclo del agua. Estilo diorama moderno, colores vibrantes, flechas sutiles indicando evaporación y precipitación. Iluminación suave de estudio, fondo neutro, alta resolución 4K." 
                     />
                   </div>
@@ -341,12 +348,12 @@ export default function SessionPage() {
                 {/* Ejemplo 2 */}
                 <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
                   <div className="p-4 bg-green-500/10 border-b border-white/10">
-                    <h4 className="font-bold text-green-400">2. Veterinaria: Manejo sanitario</h4>
+                    <h4 className="font-bold text-green-400">2. Veterinaria: manejo sanitario</h4>
                   </div>
                   <div className="p-4 space-y-4">
-                    <p className="text-sm text-gray-300"><strong>Objetivo:</strong> Poster instructivo para granja.</p>
+                    <p className="text-sm text-gray-300"><strong>Objetivo:</strong> póster instructivo para granja.</p>
                     <CopyableBlock 
-                      label="Prompt Sugerido" 
+                      label="Prompt sugerido" 
                       content="Ilustración técnica estilo manual de seguridad. Granja porcina limpia y organizada. Enfoque en estaciones de desinfección. Estilo vectorial limpio, colores corporativos verde y blanco, sin texto (solo visuales claros)." 
                     />
                   </div>
@@ -355,12 +362,12 @@ export default function SessionPage() {
                 {/* Ejemplo 3 */}
                 <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
                   <div className="p-4 bg-pink-500/10 border-b border-white/10">
-                    <h4 className="font-bold text-pink-400">3. Arte: Taller infantil</h4>
+                    <h4 className="font-bold text-pink-400">3. Arte: taller infantil</h4>
                   </div>
                   <div className="p-4 space-y-4">
-                    <p className="text-sm text-gray-300"><strong>Objetivo:</strong> Afiche promocional llamativo.</p>
+                    <p className="text-sm text-gray-300"><strong>Objetivo:</strong> afiche promocional llamativo.</p>
                     <CopyableBlock 
-                      label="Prompt Sugerido" 
+                      label="Prompt sugerido" 
                       content="Afiche artístico para taller de pintura infantil. Manos de niños manchadas de pintura colorida sobre un lienzo blanco. Estilo fotográfico con colores saturados, alegría, profundidad de campo corta, 85mm lens." 
                     />
                   </div>
@@ -375,19 +382,10 @@ export default function SessionPage() {
           )
         }
       ];
-    } else {    label="Creación de un objeto" 
-                  content="I want to see how this was made" 
-                />
-              </div>
-            </div>
-          )
-        }
-      ];
     } else {
-      // Placeholder for Sessions 3, 4
       return [
         {
-          title: `👋 Bienvenido a la Sesión ${sid}, ${userName}`,
+          title: `👋 Bienvenido a la sesión ${sid}, ${userName}`,
           icon: <Star className="w-6 h-6 text-[var(--color-hornette-primary)]" />,
           content: (
             <div className="space-y-4">
@@ -401,13 +399,14 @@ export default function SessionPage() {
           content: (
             <div className="space-y-4">
               <p>El instructor proporcionará las instrucciones en la llamada de Meet. Aquí podrás copiar y pegar los prompts una vez que se actualice la plataforma.</p>
-              <CopyableBlock label="Ejemplo de Prompt" content={`Hola, soy ${userName}. Estoy listo para la sesión ${sid}.`} />
+              <CopyableBlock label="Ejemplo de prompt" content={`Hola, soy ${userName}. Estoy listo para la sesión ${sid}.`} />
             </div>
           )
         }
       ];
     }
   };
+
 
   const steps = getSessionSteps(sessionId);
 
@@ -549,7 +548,7 @@ export default function SessionPage() {
               <div className="w-24 h-24 mx-auto bg-[var(--color-hornette-primary)] rounded-full flex items-center justify-center mb-6 shadow-[0_0_50px_rgba(255,204,0,0.5)]">
                 <Star className="w-12 h-12 text-black" />
               </div>
-              <h2 className="text-4xl font-extrabold mb-4">¡Sesión {sessionId} Completada! 🎉</h2>
+              <h2 className="text-4xl font-extrabold mb-4">¡Sesión {sessionId} completada! 🎉</h2>
               <p className="text-xl text-[var(--color-hornette-muted)] mb-8">Gran trabajo, {userName}. Has completado esta parte de tu entrenamiento.</p>
               <Link href={`/cursos/${params?.id}`}>
                 <button className="px-8 py-4 rounded-xl bg-white/10 text-white font-bold tracking-wide hover:bg-white/20 transition-colors border border-white/20">
