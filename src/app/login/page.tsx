@@ -18,11 +18,12 @@ export default function LoginPage() {
     "imss2316@gmail.com",
     "jmiguel3184@gmail.com",
     "fcampos@esarq.edu.mx",
-    "nerideliezer@gmail.com", // Añadido para que tú también puedas entrar como admin/pruebas
-    "giulia@demo.com", // Usuario demo solicitado
+    "nerideliezer@gmail.com",
+    "giulia@demo.com",
     "wickedestbenito@gmail.com",
     "leonie.runa@gmail.com",
-    "mvz.alejandra.soltero@gmail.com"
+    "mvz.alejandra.soltero@gmail.com",
+    "mvzalejandrasoltero@gmail.com"
   ];
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -93,7 +94,7 @@ export default function LoginPage() {
 
         <form onSubmit={handleLogin} className="space-y-5">
           <p className="text-center text-[var(--color-hornette-muted)] text-sm mb-4">
-            Acceso restringido solo para alumnos.
+            Acceso restringido solo para participantes.
           </p>
           
           <div>

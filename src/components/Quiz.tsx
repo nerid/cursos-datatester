@@ -278,10 +278,85 @@ const session2Questions = [
   }
 ];
 
+const session3Questions = [
+  {
+    q: "En la anatomía de un prompt visual, ¿qué elemento se encarga de definir el encuadre y la posición de la cámara?",
+    options: ["Composición.", "Sujeto.", "Atmósfera.", "Estilo artístico."],
+    correctAnswer: "Composición.",
+    explanation: "La composición dicta cómo se organiza la imagen y desde dónde 've' la cámara (ej. plano medio, contrapicado)."
+  },
+  {
+    q: "Dentro del ecosistema de Google, ¿qué función cumple específicamente el modelo Nano Banana?",
+    options: ["Es el motor especializado en la generación y edición avanzada de imágenes dentro de Gemini.", "Es una extensión para exportar datos de Drive.", "Es el modelo de lenguaje pequeño para dispositivos móviles.", "Es una herramienta de seguridad para correos electrónicos."],
+    correctAnswer: "Es el motor especializado en la generación y edición avanzada de imágenes dentro de Gemini.",
+    explanation: "Nano Banana es el nombre clave del motor de generación de imágenes de Google."
+  },
+  {
+    q: "Al crear una 'Gema visual' (Gem), ¿cuál es el primer paso recomendado para diseñarla?",
+    options: ["Definir el rol o identidad del asistente (ej. 'Eres un fotógrafo experto').", "Elegir el color de fondo de la interfaz.", "Subir 10 imágenes de referencia obligatoriamente.", "Pagar la suscripción de desarrollador."],
+    correctAnswer: "Definir el rol o identidad del asistente (ej. 'Eres un fotógrafo experto').",
+    explanation: "Darle una identidad clara ayuda a que la IA entienda el contexto técnico de las imágenes que pediremos."
+  },
+  {
+    q: "En el contexto de la ética visual, ¿quién es el responsable final del impacto y uso de las imágenes creadas con IA?",
+    options: ["El usuario que genera y publica la imagen.", "La empresa desarrolladora del modelo de IA.", "El proveedor de internet del usuario.", "Nadie, ya que es contenido generado por computadora."],
+    correctAnswer: "El usuario que genera y publica la imagen.",
+    explanation: "La responsabilidad ética y legal recae siempre en la persona que decide crear y distribuir el contenido."
+  },
+  {
+    q: "Si deseas un retrato con un desenfoque de fondo pronunciado y realismo extremo, ¿qué tipo de lente se sugiere mencionar en el prompt?",
+    options: ["Lente 85mm o 105mm con apertura amplia (f/1.8).", "Lente gran angular 14mm.", "Lente ojo de pez.", "Lente telescópico de 600mm."],
+    correctAnswer: "Lente 85mm o 105mm con apertura amplia (f/1.8).",
+    explanation: "Estas focales son estándares en fotografía de retrato para lograr el efecto 'bokeh' (desenfoque) y realismo."
+  },
+  {
+    q: "¿Qué concepto ético busca evitar que la IA perpetúe estereotipos culturales o de género en sus resultados visuales?",
+    options: ["Mitigación de sesgos (Bias mitigation).", "Resolución de imagen (DPI).", "Compresión de datos.", "Renderizado en tiempo real."],
+    correctAnswer: "Mitigación de sesgos (Bias mitigation).",
+    explanation: "Busca que la IA represente la diversidad humana de forma justa y no basada en prejuicios de entrenamiento."
+  },
+  {
+    q: "Para lograr una toma desde una altura considerable mirando directamente hacia abajo, ¿qué término de composición debe usarse?",
+    options: ["Vista de pájaro o cenital (Bird's eye view).", "Primer plano (Close-up).", "Contrapicado (Low angle).", "Plano americano."],
+    correctAnswer: "Vista de pájaro o cenital (Bird's eye view).",
+    explanation: "El plano cenital o vista de pájaro captura la escena desde arriba en un ángulo de 90 grados."
+  },
+  {
+    q: "¿Cómo se define la 'Atmósfera' en la anatomía de un prompt visual?",
+    options: ["El estado de ánimo, la iluminación y el clima de la escena.", "La cantidad de píxeles por pulgada.", "El nombre del sujeto principal de la imagen.", "La velocidad a la que la IA genera la respuesta."],
+    correctAnswer: "El estado de ánimo, la iluminación y el clima de la escena.",
+    explanation: "La atmósfera define si la imagen se siente cálida, misteriosa, lluviosa, cinematográfica, etc."
+  },
+  {
+    q: "¿Qué es un prompt en json?",
+    options: ["Una forma de dar instrucciones estructuradas mediante código para que la IA entienda parámetros específicos de forma técnica.", "Un tipo de archivo de imagen comprimido.", "Un lenguaje de programación que reemplaza al español.", "Un error que ocurre cuando el prompt es muy largo."],
+    correctAnswer: "Una forma de dar instrucciones estructuradas mediante código para que la IA entienda parámetros específicos de forma técnica.",
+    explanation: "El uso de JSON permite definir variables (sujeto, luz, cámara) de forma que la IA no pierda detalle de ninguna."
+  },
+  {
+    q: "¿Cuál es un formato de salida común solicitado para imágenes destinadas a redes sociales verticales?",
+    options: ["Relación de aspecto 9:16.", "Relación de aspecto 16:9.", "Formato cuadrado 1:1.", "Formato panorámico 21:9."],
+    correctAnswer: "Relación de aspecto 9:16.",
+    explanation: "9:16 es el estándar para Reels, TikToks e Historias de Instagram."
+  },
+  {
+    q: "Gem visual: ¿qué representa la 'Nano banana' en este motor de imágenes?",
+    options: ["Una fruta tropical", "La escala de referencia de tamaño", "El procesador de la IA", "Un error de generación"],
+    correctAnswer: "La escala de referencia de tamaño",
+    explanation: "La Nano banana se utiliza como referencia visual de escala para entender el tamaño real de los objetos generados."
+  },
+  {
+    q: "En la creación visual, ¿a qué se refiere el término 'Iluminación dramática'?",
+    options: ["Uso de fuertes contrastes entre luces y sombras para generar tensión o impacto visual.", "Iluminación uniforme y plana en toda la imagen.", "Uso de colores neón en todas las fuentes de luz.", "Iluminación que solo se usa en escenas de teatro."],
+    correctAnswer: "Uso de fuertes contrastes entre luces y sombras para generar tensión o impacto visual.",
+    explanation: "También conocida como claroscuro, ayuda a dar profundidad y peso emocional a la imagen."
+  }
+];
+
 const questionBanks: Record<number, any[]> = {
   1: session1Questions,
   2: session2Questions,
-  3: [],
+  3: session3Questions,
   4: []
 };
 
@@ -376,7 +451,7 @@ export default function Quiz({ sessionId, onSuccess }: QuizProps) {
               onClick={onSuccess}
               className="px-8 py-4 rounded-xl bg-[var(--color-hornette-primary)] text-black font-bold hover:bg-[var(--color-hornette-primary-hover)] transition-colors w-full"
             >
-              Finalizar y desbloquear sesión 2
+              {sessionId < 4 ? `Finalizar y desbloquear sesión ${sessionId + 1}` : "Finalizar y completar curso"}
             </button>
           </div>
         ) : (

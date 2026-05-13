@@ -110,9 +110,9 @@ export default function AdminPage() {
 
         <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hornette-shadow">
           <div className="p-6 border-b border-white/10 flex justify-between items-center bg-black/20">
-            <h2 className="text-xl font-bold">Progreso de Alumnos</h2>
+            <h2 className="text-xl font-bold">Progreso de usuarios</h2>
             <span className="bg-[var(--color-hornette-primary)] text-black font-bold px-3 py-1 rounded-full text-sm">
-              {progressData.length} inscritos
+              {progressData.length} participantes
             </span>
           </div>
 
@@ -120,17 +120,17 @@ export default function AdminPage() {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-white/5 border-b border-white/10">
-                  <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Usuario / Correo</th>
-                  <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Sesiones Completadas</th>
-                  <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Progreso Global</th>
-                  <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Última Actividad</th>
+                  <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Usuario / correo</th>
+                  <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Sesiones completadas</th>
+                  <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Progreso global</th>
+                  <th className="p-4 font-semibold text-[var(--color-hornette-muted)] text-sm">Última actividad</th>
                 </tr>
               </thead>
               <tbody>
                 {progressData.length === 0 ? (
                   <tr>
                     <td colSpan={4} className="p-8 text-center text-gray-500">
-                      Aún no hay alumnos con progreso registrado.
+                      Aún no hay participantes con progreso registrado.
                     </td>
                   </tr>
                 ) : (

@@ -272,176 +272,110 @@ export default function SessionPage() {
               </div>
               <p className="text-xs text-[var(--color-hornette-primary)] flex gap-2 items-center bg-[var(--color-hornette-primary)]/10 p-3 rounded-lg mt-4">
                 <Lightbulb className="w-4 h-4 shrink-0" />
-                Nota: Si la IA pone al jugador "flotando en el aire", corrige tu prompt siendo más específico: "que el balón esté a ras de pasto".
-              </p>
+                Nota: Si la IA pone al jugador "flotando en el aire", corrige tu prompt siendo más específico: "que el balón         }
+      ];
+    } else if (sid === 3) {
+      return [
+        {
+          title: `🎨 Objetivo principal, ${userName}`,
+          icon: <Star className="w-6 h-6 text-yellow-400" />,
+          content: (
+            <div className="space-y-3 text-lg">
+              <p>Aprender a usar la IA como una herramienta para <strong>extender la creatividad</strong> y la comunicación visual, dominando la anatomía del prompt visual y el uso de <strong>Gems especializados</strong>.</p>
+            </div>
+          )
+        },
+        {
+          title: "🚀 Introducción a la generación visual",
+          icon: <ImageIcon className="w-6 h-6 text-pink-400" />,
+          content: (
+            <div className="space-y-4">
+              <p>La IA no reemplaza al creativo, lo potencia. Exploraremos cómo transformar ideas en imágenes de alto impacto usando el motor <strong>Nano Banana</strong> de Google.</p>
+              <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                <h4 className="font-bold text-[var(--color-hornette-primary)] mb-2">Puntos clave:</h4>
+                <ul className="list-disc pl-5 space-y-2 text-sm text-[var(--color-hornette-muted)]">
+                  <li>Uso de <strong>Gems</strong> para asistencia visual técnica.</li>
+                  <li>Transformación de fuentes en resúmenes visuales y mapas conceptuales.</li>
+                  <li>Dominio de la anatomía del prompt: Sujeto, Entorno, Iluminación y Cámara.</li>
+                </ul>
+              </div>
+            </div>
+          )
+        },
+        {
+          title: "💎 Gem para imágenes: Tu asistente experto",
+          icon: <PenTool className="w-6 h-6 text-teal-400" />,
+          content: (
+            <div className="space-y-4">
+              <p>Crearemos un asistente especializado en fotografía y diseño para que nos ayude a redactar prompts técnicos.</p>
+              <CopyableBlock 
+                label="Instrucciones del gem visual" 
+                content="Actúa como un director de arte y fotógrafo profesional. Tu misión es ayudar al usuario a crear prompts para generación de imágenes. Para cada petición, estructura tu respuesta en JSON incluyendo: Sujeto, Composición (lente, encuadre), Iluminación (tipo de luz, sombras), Estilo (fotorrealismo, ilustración, etc.) y Atmósfera. Sugiere siempre una relación de aspecto adecuada (1:1, 16:9, 9:16)." 
+              />
+              <p className="text-sm text-[var(--color-hornette-muted)] italic">Esto asegura que la IA no olvide detalles técnicos como el tipo de lente o la profundidad de campo.</p>
+            </div>
+          )
+        },
+        {
+          title: "💻 Ejercicio: Imagen útil para tu trabajo",
+          icon: <MessageSquare className="w-6 h-6 text-indigo-400" />,
+          content: (
+            <div className="space-y-6">
+              <p>Elige un objetivo específico para tu labor diaria. Aquí tienes ejemplos de cómo estructurar prompts maestros:</p>
+              
+              <div className="space-y-8">
+                {/* Ejemplo 1 */}
+                <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+                  <div className="p-4 bg-blue-500/10 border-b border-white/10">
+                    <h4 className="font-bold text-blue-400">1. Educación: Ciclo del agua</h4>
+                  </div>
+                  <div className="p-4 space-y-4">
+                    <p className="text-sm text-gray-300"><strong>Objetivo:</strong> Portada para unidad didáctica clara y profesional.</p>
+                    <CopyableBlock 
+                      label="Prompt Sugerido" 
+                      content="Infografía educativa 3D del ciclo del agua. Estilo diorama moderno, colores vibrantes, flechas sutiles indicando evaporación y precipitación. Iluminación suave de estudio, fondo neutro, alta resolución 4K." 
+                    />
+                  </div>
+                </div>
+
+                {/* Ejemplo 2 */}
+                <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+                  <div className="p-4 bg-green-500/10 border-b border-white/10">
+                    <h4 className="font-bold text-green-400">2. Veterinaria: Manejo sanitario</h4>
+                  </div>
+                  <div className="p-4 space-y-4">
+                    <p className="text-sm text-gray-300"><strong>Objetivo:</strong> Poster instructivo para granja.</p>
+                    <CopyableBlock 
+                      label="Prompt Sugerido" 
+                      content="Ilustración técnica estilo manual de seguridad. Granja porcina limpia y organizada. Enfoque en estaciones de desinfección. Estilo vectorial limpio, colores corporativos verde y blanco, sin texto (solo visuales claros)." 
+                    />
+                  </div>
+                </div>
+
+                {/* Ejemplo 3 */}
+                <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+                  <div className="p-4 bg-pink-500/10 border-b border-white/10">
+                    <h4 className="font-bold text-pink-400">3. Arte: Taller infantil</h4>
+                  </div>
+                  <div className="p-4 space-y-4">
+                    <p className="text-sm text-gray-300"><strong>Objetivo:</strong> Afiche promocional llamativo.</p>
+                    <CopyableBlock 
+                      label="Prompt Sugerido" 
+                      content="Afiche artístico para taller de pintura infantil. Manos de niños manchadas de pintura colorida sobre un lienzo blanco. Estilo fotográfico con colores saturados, alegría, profundidad de campo corta, 85mm lens." 
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              <div className="p-4 bg-indigo-500/10 rounded-xl border border-indigo-500/20 mt-4">
+                <p className="text-indigo-300 font-medium">✨ Práctica libre:</p>
+                <p className="text-sm mt-1">Genera tu propia imagen, descarga el resultado y analiza el prompt que usó la IA para llegar ahí. ¿Qué palabras clave marcaron la diferencia?</p>
+              </div>
             </div>
           )
         }
       ];
-    } else if (sid === 2) {
-      return [
-        {
-          title: `🧠 Objetivo principal, ${userName}`,
-          icon: <Star className="w-6 h-6 text-yellow-400" />,
-          content: (
-            <div className="space-y-3 text-lg">
-              <p>Aprender a usar <strong>NotebookLM</strong> como un cerebro secundario para organizar fuentes de investigación y documentos extensos, interactuando de manera <strong>privada y segura</strong>.</p>
-            </div>
-          )
-        },
-        {
-          title: "📥 Introducción y carga de fuentes",
-          icon: <HardDrive className="w-6 h-6 text-blue-400" />,
-          content: (
-            <div className="space-y-4 text-base">
-              <p>NotebookLM permite la carga de información multimodal: archivos de texto, PDFs, enlaces web y más.</p>
-              <ul className="space-y-4">
-                <li className="flex gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
-                  <span className="text-[var(--color-hornette-primary)] font-bold">1.</span>
-                  <div>
-                    <strong className="text-white block mb-1">Audios locales a MP3:</strong>
-                    <p>Convierte audios de WhatsApp (OGG) a MP3 usando el conversor local (File Converter) para subirlos como fuente, cuidando tu privacidad. <InfoTooltip content="Procesar localmente antes de subir asegura que tus conversaciones privadas no pasen por servidores no deseados en formatos no nativos." /></p>
-                  </div>
-                </li>
-                <li className="flex gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
-                  <span className="text-[var(--color-hornette-primary)] font-bold">2.</span>
-                  <div>
-                    <strong className="text-white block mb-1">Documentos subrayados:</strong>
-                    <p>Si solo quieres que la IA analice partes subrayadas, la mejor estrategia es <strong>extraer esos textos a un nuevo documento</strong> o grabar una nota de voz leyéndolos y subirla como input principal.</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          )
-        },
-        {
-          title: "🔗 Conexiones y Referencias",
-          icon: <ExternalLink className="w-6 h-6 text-green-400" />,
-          content: (
-            <ul className="space-y-4 text-base">
-              <li className="flex gap-3">
-                <span className="text-[var(--color-hornette-primary)] font-bold">1.</span>
-                <p><strong>Citas exactas:</strong> El chat responde insertando índices numéricos [1], [2]. Al darles clic, te llevan directamente a la <strong>línea exacta</strong> de tu documento fuente.</p>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-[var(--color-hornette-primary)] font-bold">2.</span>
-                <p><strong>Directrices estrictas:</strong> Sube un documento con reglas operativas (ej. Código Civil o manual de tu empresa) para <strong>forzar a la IA</strong> a ceñirse exclusivamente a esos parámetros y evitar alucinaciones.</p>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-[var(--color-hornette-primary)] font-bold">3.</span>
-                <p><strong>El sentence case:</strong> Recuerda pedirle que formatee los textos al estilo <em>"sentence case"</em> propio del español, para evitar el <em>"Title Case"</em> anglosajón.</p>
-              </li>
-            </ul>
-          )
-        },
-        {
-          title: "🎨 El panel Studio: transformación de la información",
-          icon: <Lightbulb className="w-6 h-6 text-pink-400" />,
-          content: (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
-                <h4 className="font-bold text-pink-400 flex items-center gap-2 mb-2"><PlayCircle className="w-4 h-4" /> Resúmenes en audio</h4>
-                <p className="text-sm text-gray-300">Generación de un formato de podcast a dos voces que debate tus documentos. Ideal para repasar en el auto.</p>
-              </div>
-              <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
-                <h4 className="font-bold text-pink-400 flex items-center gap-2 mb-2"><PenTool className="w-4 h-4" /> Guías de estudio</h4>
-                <p className="text-sm text-gray-300">Creación de cuestionarios y tarjetas interactivas (flashcards) para repasar conceptos clave.</p>
-              </div>
-              <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
-                <h4 className="font-bold text-pink-400 flex items-center gap-2 mb-2"><ImageIcon className="w-4 h-4" /> Mapas mentales</h4>
-                <p className="text-sm text-gray-300">Representaciones gráficas que expanden conceptos y agrupan temáticas densas.</p>
-              </div>
-              <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
-                <h4 className="font-bold text-pink-400 flex items-center gap-2 mb-2"><CheckCircle className="w-4 h-4" /> Tablas de datos</h4>
-                <p className="text-sm text-gray-300">Organización automática y cruzada de la información de varios documentos simultáneamente.</p>
-              </div>
-            </div>
-          )
-        },
-        {
-          title: "💻 Ejercicio 1: El diálogo con mis fuentes",
-          icon: <MessageSquare className="w-6 h-6 text-teal-400" />,
-          content: (
-            <div className="space-y-4">
-              <p>Accede a <strong>NotebookLM</strong> y sube 2 o 3 PDFs relacionados con tu área profesional. Luego, pega este prompt en el chat:</p>
-              <CopyableBlock 
-                label="Prompt analítico" 
-                content="¿Cuáles son los 3 puntos de acuerdo más importantes entre estos documentos?" 
-              />
-              <div className="p-4 bg-teal-500/10 rounded-xl border border-teal-500/20 mt-4">
-                <p className="text-teal-300 font-medium">🎯 Meta del ejercicio:</p>
-                <p className="text-sm mt-1">Observa cómo el sistema cita las fuentes originales en su respuesta, comprobando que la información cruzada es precisa y rastreable.</p>
-              </div>
-            </div>
-          )
-        },
-        {
-          title: "📚 Ejercicio 2: Creación de material de apoyo",
-          icon: <Star className="w-6 h-6 text-[var(--color-hornette-primary)]" />,
-          content: (
-            <div className="space-y-4">
-              <ol className="list-decimal pl-5 space-y-3 text-lg">
-                <li>Selecciona uno de los documentos más densos cargados en tu cuaderno.</li>
-                <li>Navega al panel derecho de <strong>Studio</strong>.</li>
-                <li>Selecciona la opción <strong>"Guía de estudio"</strong>.</li>
-              </ol>
-              <p className="text-gray-300 mt-4 p-4 border-l-4 border-[var(--color-hornette-primary)] bg-white/5">
-                Revisa el cuestionario generado y las tarjetas de estudio (flashcards) e interactúa con ellas para validar tu comprensión del documento.
-              </p>
-            </div>
-          )
-        },
-        {
-          title: "📝 Plantillas de prompts listos para usar",
-          icon: <PenTool className="w-6 h-6 text-purple-400" />,
-          content: (
-            <div className="space-y-6">
-              <p className="text-lg">Esta tabla proporciona fórmulas de prompts optimizadas para las necesidades específicas de cada perfil profesional, listas para ser copiadas y adaptadas.</p>
-              
-              <div className="space-y-4">
-                <CopyableBlock 
-                  label="Creación de planeación" 
-                  content="Actúa como un diseñador instruccional experto. Diseña una planeación de clase de 60 minutos para el tema [Tema] dirigida a alumnos de [Nivel Educativo]. Incluye un inicio rompehielo, desarrollo con actividad práctica y un cierre de evaluación rápida. El tono debe ser motivador." 
-                />
-                <CopyableBlock 
-                  label="Síntesis de Casos" 
-                  content="Como psicólogo clínico, analiza las siguientes notas de sesión anonimizadas: [Notas]. Identifica patrones de comportamiento, posibles distorsiones cognitivas y sugiere una tarea para el paciente que refuerce el trabajo en sesión. Mantén un tono profesional y ético." 
-                />
-                <CopyableBlock 
-                  label="Estructuración de contenido" 
-                  content="Soy un escritor trabajando en un [Libro/Artículo] sobre [Tema]. Ayúdame a expandir este esquema: [Esquema actual]. Sugiere 3 subtemas que no haya considerado y propón un gancho narrativo para el primer párrafo que capture la atención de lectores en Guadalajara." 
-                />
-                <CopyableBlock 
-                  label="Análisis Bibliográfico" 
-                  content="Actúa como un asistente de investigación senior. Compara los siguientes dos resúmenes de artículos: [Resumen 1] y [Resumen 2]. Identifica las brechas de investigación (lo que aún no se ha estudiado) y sugiere una pregunta de investigación original basada en estas brechas." 
-                />
-              </div>
-
-              <div className="bg-purple-500/10 border border-purple-500/20 p-5 rounded-xl mt-6">
-                <h4 className="font-bold text-purple-300 mb-3">Consejos para mejorar tus resultados:</h4>
-                <ul className="space-y-2 text-sm text-[var(--color-hornette-muted)]">
-                  <li><strong className="text-white">Asignación de Rol:</strong> Empieza siempre con "Actúa como..." para establecer el contexto experto.</li>
-                  <li><strong className="text-white">Iteración:</strong> Si el primer resultado no es perfecto, no lo borres. Pide ajustes como "Hazlo más formal" o "Añade ejemplos locales de Guadalajara".</li>
-                  <li><strong className="text-white">Anonimización:</strong> Nunca pegues nombres reales, direcciones o datos de contacto sensibles en la IA. Usa etiquetas como [Paciente A] o [Alumno X].</li>
-                </ul>
-              </div>
-
-              <h3 className="text-xl font-bold mt-8 mb-4 text-white">Prompts para imágenes</h3>
-              <div className="space-y-4">
-                <CopyableBlock 
-                  label="Reflejos de atardecer" 
-                  content="Convierte la imagen en 4K HD y agrega efectos húmedos después de la lluvia, haz un reflejo del atardecer la puesta de sol arriba, pero no lo difumines y debe de estar ordenado" 
-                />
-                <CopyableBlock 
-                  label="Retrato piel hiperrealista" 
-                  content="Ultra-detailed photorealistic skin: texture enhancement. Preserve original face, proportion expression and pose 1:1. Natural skin micro-relief with visible pores, fine skin grain, subel uneven texture. Micro wrinkles around eyes, lips. and nasolabial area, delicate natural creases. Visible vellus facial hair (peach fuzz) on cheeks, forehead and upper lip, very fine and realistic Natural skin imperfections: tiny kles, micro redness, slight tonal variation Realistic glossy highlights on skin, true light reflection, no artificial shine High-resolution beauty macro clarity, epidermis-level detail. Professional studio lighting emphasizing texture, soft directional light, controlled highlights. Shot on high-end full-frame camera, macro lens, RAW photo realism. Zero retouching, zero smoothing, no beauty filters, no Al plastic skin. Shot on high-end full-frame camera 85-105mm lens shallow depth of held, extreme realism, RAW photo look, editorial beauty photography, zero retouching, no Al plastic skin." 
-                />
-                <CopyableBlock 
-                  label="Quitar personas/elementos" 
-                  content="Utilizando esta imagen, elimina a la persona que está a la derecha/izquierda/fondo. Reconstruye el fondo naturalmente y mantén la iluminación y estilo originales." 
-                />
-                <CopyableBlock 
-                  label="Creación de un objeto" 
+    } else {    label="Creación de un objeto" 
                   content="I want to see how this was made" 
                 />
               </div>

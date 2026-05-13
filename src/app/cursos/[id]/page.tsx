@@ -9,10 +9,10 @@ import { supabase } from "@/lib/supabase";
 import { useParams } from "next/navigation";
 
 const sessions = [
-  { id: 1, title: "Introducción a la IA y Conceptos Básicos", duration: "45 min", badge: "Pionero", emoji: "🌱" },
-  { id: 2, title: "Herramientas de IA Generativa", duration: "60 min", badge: "Explorador", emoji: "🧭" },
-  { id: 3, title: "Prompt Engineering Efectivo", duration: "50 min", badge: "Arquitecto", emoji: "🏗️" },
-  { id: 4, title: "Casos de Uso en el Trabajo Diario", duration: "40 min", badge: "Maestro", emoji: "👑" },
+  { id: 1, title: "Fundamentos de inteligencia artificial", duration: "45 min", badge: "Pionero", emoji: "🌱" },
+  { id: 2, title: "NotebookLM: Tu cerebro secundario", duration: "60 min", badge: "Explorador", emoji: "🧠" },
+  { id: 3, title: "Imaginación aumentada – Creación visual con IA", duration: "50 min", badge: "Arquitecto", emoji: "🎨" },
+  { id: 4, title: "Casos de uso en el trabajo diario", duration: "40 min", badge: "Maestro", emoji: "👑" },
 ];
 
 export default function CoursePage() {

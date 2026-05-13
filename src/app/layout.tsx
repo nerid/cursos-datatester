@@ -3,8 +3,8 @@ import "./globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
-  title: "Highlights DataTester - Cultura digital",
-  description: "Página de apoyo y material complementario para cursos de Cultura digital.",
+  title: 'Cultura digital – Highlights de cursos',
+  description: 'Página de apoyo con los contenidos destacados de los cursos de cultura digital impartidos por Benjamín Quintero.',
 };
 
 export default function RootLayout({
