@@ -93,12 +93,27 @@ export default function SessionPage() {
         updated_at: new Date().toISOString()
       };
       
-      const { error: upsertError } = await supabase.from('user_progress').upsert(payload);
+      // Intentar guardar en Supabase
+      console.log("Intentando guardar progreso en Supabase...", payload);
+      const { error: upsertError } = await supabase
+        .from('user_progress')
+        .upsert(payload, { onConflict: 'user_id,course_id' });
+
       if (upsertError) {
-        console.warn("Error en Supabase (posiblemente falta la columna email), reintentando sin email:", upsertError);
-        delete payload.email;
-        const { error: retryError } = await supabase.from('user_progress').upsert(payload);
-        if (retryError) console.error("Error en reintento de Supabase:", retryError);
+        console.warn("Error en Supabase (reintentando sin email):", upsertError);
+        const retryPayload = { ...payload };
+        delete retryPayload.email;
+        const { error: retryError } = await supabase
+          .from('user_progress')
+          .upsert(retryPayload, { onConflict: 'user_id,course_id' });
+        
+        if (retryError) {
+          console.error("Error crítico al guardar progreso:", retryError);
+        } else {
+          console.log("Progreso guardado exitosamente (reintento)");
+        }
+      } else {
+        console.log("Progreso guardado exitosamente en Supabase");
       }
       
       setCurrentStep(steps.length);

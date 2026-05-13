@@ -105,8 +105,13 @@ export default function CoursePage() {
           <Link href="/dashboard" className="text-[var(--color-hornette-muted)] hover:text-white transition-colors mr-6 bg-white/5 p-2 rounded-full hover:bg-white/10">
             <ArrowLeft className="w-5 h-5" />
           </Link>
-          <div className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-            Módulo: AI básico
+          <div className="flex flex-col">
+            <div className="text-[var(--color-hornette-muted)] text-xs font-bold uppercase tracking-widest mb-1">
+              Hola, {user?.email === "zyanya.solorzano@gmail.com" ? "Vjejoslavovna" : user?.displayName?.split(' ')[0] || "estudiante"}
+            </div>
+            <div className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+              Módulo: AI básico
+            </div>
           </div>
         </div>
       </nav>

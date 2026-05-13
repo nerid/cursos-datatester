@@ -77,9 +77,15 @@ export default function Dashboard() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-12"
         >
-          <h1 className="text-4xl font-bold mb-4">Mis highlights</h1>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-[var(--color-hornette-primary)] font-bold uppercase tracking-wider text-sm">Bienvenido de nuevo</span>
+            <div className="h-[1px] flex-1 bg-white/10" />
+          </div>
+          <h1 className="text-4xl font-bold mb-4">
+            Hola, {user?.email === "zyanya.solorzano@gmail.com" ? "Vjejoslavovna" : user?.displayName?.split(' ')[0] || "estudiante"}
+          </h1>
           <p className="text-[var(--color-hornette-muted)] text-lg">
-            Repasa los puntos clave y el material de apoyo.
+            Repasa los puntos clave y el material de apoyo de tus cursos.
           </p>
         </motion.div>
 
