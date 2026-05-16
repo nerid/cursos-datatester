@@ -353,11 +353,135 @@ const session3Questions = [
   }
 ];
 
+const session4Questions = [
+  {
+    q: "¿Cuál es la principal característica que diferencia a Grok de otros chatbots como ChatGPT?",
+    options: [
+      "Su tono audaz y 'sin filtros', además de su conexión en tiempo real con la red X.",
+      "Que es totalmente gratuito para todos los usuarios del mundo.",
+      "Que es el único capaz de generar videos de alta definición.",
+      "Su enfoque exclusivo en la medicina y salud pública."
+    ],
+    correctAnswer: "Su tono audaz y 'sin filtros', además de su conexión en tiempo real con la red X.",
+    explanation: "Grok destaca por su acceso directo a datos de la red X y su personalidad sarcástica."
+  },
+  {
+    q: "¿Qué función cumple el comando rápido '/humano' al interactuar con ciertos chatbots?",
+    options: [
+      "Humanizar y suavizar el registro y tono de las respuestas generadas.",
+      "Hacer que la IA hable con una voz humana pregrabada.",
+      "Pedirle a la IA que nos cuente un secreto personal.",
+      "Traducir el texto automáticamente a latín."
+    ],
+    correctAnswer: "Humanizar y suavizar el registro y tono de las respuestas generadas.",
+    explanation: "Es una instrucción corta para que la IA adopte un tono menos robótico y más natural."
+  },
+  {
+    q: "¿Cuál es la principal ventaja competitiva de Manus AI?",
+    options: [
+      "Su capacidad para actuar como un agente autónomo que ejecuta tareas complejas y navega la web.",
+      "Que funciona sin necesidad de conexión a internet.",
+      "Que es el chatbot más antiguo del mercado.",
+      "Su especialización única en la creación de recetas de cocina."
+    ],
+    correctAnswer: "Su capacidad para actuar como un agente autónomo que ejecuta tareas complejas y navega la web.",
+    explanation: "Manus AI es un agente de próxima generación capaz de automatizar flujos de trabajo completos."
+  },
+  {
+    q: "Si un usuario utiliza el comando 'El5' o 'El10', ¿qué tipo de respuesta está solicitando a la IA?",
+    options: [
+      "Una explicación de conceptos complejos en términos sencillos, como para un niño de 5 o 10 años.",
+      "Que la IA genere 5 o 10 respuestas diferentes a la vez.",
+      "Que la IA use solo 5 o 10 palabras en total.",
+      "Un descuento del 5% o 10% en la suscripción premium."
+    ],
+    correctAnswer: "Una explicación de conceptos complejos en términos sencillos, como para un niño de 5 o 10 años.",
+    explanation: "Viene de 'Explain like I'm 5/10', solicitando máxima simplicidad."
+  },
+  {
+    q: "¿Cuál es la característica distintiva de Claude, desarrollada por Anthropic?",
+    options: [
+      "Su enfoque en seguridad ética y su gran ventana de contexto para procesar documentos extensos.",
+      "Que es propiedad de Elon Musk.",
+      "Que solo puede usarse en dispositivos Apple.",
+      "Su capacidad única para predecir el precio del Bitcoin."
+    ],
+    correctAnswer: "Su enfoque en seguridad ética y su gran ventana de contexto para procesar documentos extensos.",
+    explanation: "Claude es reconocido por su naturalidad y por manejar volúmenes masivos de datos con seguridad."
+  },
+  {
+    q: "¿Cuál es la función del comando 'TL;DR' en la interacción con la IA?",
+    options: [
+      "Solicitar un resumen corto y conciso de un texto extenso.",
+      "Pedirle a la IA que traduzca el texto al idioma alemán.",
+      "Indicar que la respuesta fue demasiado larga y no se leyó.",
+      "Reiniciar el chat por completo para borrar la memoria."
+    ],
+    correctAnswer: "Solicitar un resumen corto y conciso de un texto extenso.",
+    explanation: "Significa 'Too Long; Didn't Read', ideal para obtener la esencia rápidamente."
+  },
+  {
+    q: "¿Qué modelo chino es descrito como el 'gigante versátil de Alibaba'?",
+    options: [
+      "Qwen.",
+      "DeepSeek.",
+      "Zhipu AI.",
+      "Chat.z.ai."
+    ],
+    correctAnswer: "Qwen.",
+    explanation: "Qwen es la solución robusta de Alibaba Cloud para análisis masivo de datos."
+  },
+  {
+    q: "¿Qué representa el concepto de 'Agentes' en la evolución de la IA?",
+    options: [
+      "Sistemas capaces de planificar y ejecutar acciones autónomas para cumplir objetivos complejos.",
+      "Personas reales que revisan tus mensajes detrás de la pantalla.",
+      "Un tipo de virus informático que usa inteligencia artificial.",
+      "Bots que solo sirven para vender productos por teléfono."
+    ],
+    correctAnswer: "Sistemas capaces de planificar y ejecutar acciones autónomas para cumplir objetivos complejos.",
+    explanation: "Un agente no solo responde, sino que 'actúa' interconectando aplicaciones."
+  },
+  {
+    q: "En la jerarquía de la IA, ¿qué diferencia a la IA 'Agéntica' de la 'Generativa'?",
+    options: [
+      "La agéntica puede ejecutar acciones y tomar decisiones; la generativa se enfoca en crear contenido.",
+      "La agéntica es más barata que la generativa.",
+      "La generativa solo funciona con imágenes; la agéntica solo con texto.",
+      "No hay ninguna diferencia, son términos intercambiables."
+    ],
+    correctAnswer: "La agéntica puede ejecutar acciones y tomar decisiones; la generativa se enfoca en crear contenido.",
+    explanation: "La generativa crea (texto/imagen), la agéntica resuelve (ejecuta pasos)."
+  },
+  {
+    q: "¿Qué es una 'Skill' en el contexto de los agentes de IA?",
+    options: [
+      "Una capacidad específica o herramienta que el agente puede usar (como navegar o programar).",
+      "El nivel de experiencia que tiene el usuario usando la plataforma.",
+      "La velocidad a la que el servidor procesa la información.",
+      "Un trofeo virtual que ganas al terminar el curso."
+    ],
+    correctAnswer: "Una capacidad específica o herramienta que el agente puede usar (como navegar o programar).",
+    explanation: "Las skills permiten al agente interactuar con el mundo real o software externo."
+  },
+  {
+    q: "¿Qué comando usarías si quisieras que la IA te entregara el resultado en formato de lista de viñetas?",
+    options: [
+      "Listify.",
+      "Bulleted.",
+      "TL;DR.",
+      "/humanize"
+    ],
+    correctAnswer: "Listify.",
+    explanation: "Listify es el comando rápido para forzar un formato de lista en la respuesta."
+  }
+];
+
 const questionBanks: Record<number, any[]> = {
   1: session1Questions,
   2: session2Questions,
   3: session3Questions,
-  4: []
+  4: session4Questions
 };
 
 // Helper to shuffle array

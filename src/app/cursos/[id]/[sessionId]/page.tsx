@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle, Circle, ArrowLeft, ArrowRight, ExternalLink, Lightbulb, PlayCircle, Star, PenTool, Image as ImageIcon, MessageSquare, Copy, Check, HardDrive } from "lucide-react";
+import { CheckCircle, Circle, ArrowLeft, ArrowRight, ExternalLink, Lightbulb, PlayCircle, Star, PenTool, Image as ImageIcon, MessageSquare, Copy, Check, HardDrive, Bot, Zap, Globe, Terminal, Cpu } from "lucide-react";
 import Link from "next/link";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/lib/supabase";
@@ -396,6 +396,132 @@ export default function SessionPage() {
               <div className="p-4 bg-indigo-500/10 rounded-xl border border-indigo-500/20 mt-4">
                 <p className="text-indigo-300 font-medium">✨ Práctica libre:</p>
                 <p className="text-sm mt-1">Genera tu propia imagen, descarga el resultado y analiza el prompt que usó la IA para llegar ahí. ¿Qué palabras clave marcaron la diferencia?</p>
+              </div>
+            </div>
+          )
+        }
+      ];
+    } else if (sid === 4) {
+      return [
+        {
+          title: `🤖 Ecosistema de chatbots y agentes, ${userName}`,
+          icon: <Star className="w-6 h-6 text-yellow-400" />,
+          content: (
+            <div className="space-y-3 text-lg">
+              <p>Exploraremos los <strong>atajos maestros</strong> para dominar el prompt, analizaremos las diferencias entre los <strong>líderes mundiales</strong> y descubriremos la nueva frontera: los <strong>agentes autónomos</strong>.</p>
+            </div>
+          )
+        },
+        {
+          title: "⌨️ Atajos y comandos rápidos",
+          icon: <Terminal className="w-6 h-6 text-blue-400" />,
+          content: (
+            <div className="space-y-6">
+              <p>Usa estas instrucciones cortas para modificar instantáneamente el comportamiento de la IA:</p>
+              
+              <div className="grid grid-cols-1 gap-4">
+                <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                  <h4 className="font-bold text-teal-400 mb-2">/humano</h4>
+                  <p className="text-sm text-gray-300 mb-3">Humaniza y suaviza el registro de las respuestas para que no parezcan redactadas por una máquina.</p>
+                  <CopyableBlock label="Comando" content="/humano Revisa este correo para que suene más empático y cercano." />
+                </div>
+
+                <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                  <h4 className="font-bold text-orange-400 mb-2">TL;DR</h4>
+                  <p className="text-sm text-gray-300 mb-3">(Too Long; Didn't Read) Para obtener respuestas cortas, directas y resúmenes ejecutivos.</p>
+                  <CopyableBlock label="Comando" content="TL;DR resume los 3 puntos clave de este informe." />
+                </div>
+
+                <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                  <h4 className="font-bold text-pink-400 mb-2">El5 / El10</h4>
+                  <p className="text-sm text-gray-300 mb-3">Explícamelo como si tuviera 5 o 10 años. Ideal para conceptos técnicos o complejos.</p>
+                  <CopyableBlock label="Comando" content="El5 ¿Qué es la computación cuántica?" />
+                </div>
+
+                <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                  <h4 className="font-bold text-indigo-400 mb-2">Listify</h4>
+                  <p className="text-sm text-gray-300 mb-3">Obliga a la herramienta a que la respuesta se entregue siempre en formato de lista.</p>
+                  <CopyableBlock label="Comando" content="Listify pasos para configurar un servidor." />
+                </div>
+              </div>
+            </div>
+          )
+        },
+        {
+          title: "🌍 Líderes occidentales",
+          icon: <Globe className="w-6 h-6 text-green-400" />,
+          content: (
+            <div className="space-y-4">
+              <p>Comparativa de las herramientas más potentes en nuestra región:</p>
+              <div className="space-y-3">
+                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
+                  <div className="font-bold text-white min-w-[100px]">ChatGPT:</div>
+                  <p className="text-sm text-gray-300">El referente versátil. Destaca por su ecosistema de <strong>GPTs</strong> y facilidad de uso.</p>
+                </div>
+                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
+                  <div className="font-bold text-white min-w-[100px]">Claude:</div>
+                  <p className="text-sm text-gray-300">El más natural y seguro. Ideal para procesar <strong>documentos extensos</strong> (PDFs de 500+ páginas).</p>
+                </div>
+                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
+                  <div className="font-bold text-white min-w-[100px]">Copilot:</div>
+                  <p className="text-sm text-gray-300">Integración total con <strong>Microsoft 365</strong>. Útil para trabajar sobre Word, Excel y PowerPoint.</p>
+                </div>
+                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
+                  <div className="font-bold text-white min-w-[100px]">Grok:</div>
+                  <p className="text-sm text-gray-300">Audaz y sin filtros. Conectado en <strong>tiempo real</strong> a la red social X (Twitter).</p>
+                </div>
+              </div>
+            </div>
+          )
+        },
+        {
+          title: "🏮 Potencias orientales",
+          icon: <Zap className="w-6 h-6 text-red-400" />,
+          content: (
+            <div className="space-y-4">
+              <p>Modelos emergentes con capacidades asombrosas (muchos gratuitos):</p>
+              <div className="space-y-3">
+                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
+                  <div className="font-bold text-white min-w-[100px]">DeepSeek:</div>
+                  <p className="text-sm text-gray-300">Eficiencia extrema. Capaz de razonar como modelos mucho más costosos.</p>
+                </div>
+                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
+                  <div className="font-bold text-white min-w-[100px]">Qwen:</div>
+                  <p className="text-sm text-gray-300">El gigante de Alibaba. Robusto para análisis de datos masivos y código.</p>
+                </div>
+                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
+                  <div className="font-bold text-white min-w-[100px]">Zhipu / Chat.z.ai:</div>
+                  <p className="text-sm text-gray-300">Punteros en el ecosistema asiático con integración de video y búsqueda avanzada.</p>
+                </div>
+              </div>
+              <div className="mt-4 p-4 bg-red-500/10 rounded-xl border border-red-500/20">
+                <p className="text-xs text-red-300 font-medium uppercase tracking-wider mb-2">Nota importante:</p>
+                <p className="text-sm">Explora estos enlaces para conocer interfaces alternativas y modelos 'open weights'.</p>
+              </div>
+            </div>
+          )
+        },
+        {
+          title: "🦾 La nueva frontera: Agentes autónomos",
+          icon: <Bot className="w-6 h-6 text-purple-400" />,
+          content: (
+            <div className="space-y-4">
+              <p>Del "Chat" a la "Acción". Los agentes no solo hablan, sino que <strong>hacen</strong>.</p>
+              <div className="bg-gradient-to-br from-purple-500/20 to-blue-500/20 p-6 rounded-2xl border border-white/10">
+                <h4 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <Cpu className="w-5 h-5 text-purple-400" /> Manus AI
+                </h4>
+                <p className="text-sm text-gray-200 mb-4">
+                  Considerado el primer agente de propósito general. Puede navegar la web, editar código, investigar y completar tareas complejas sin intervención constante.
+                </p>
+                <ul className="space-y-2 text-xs text-gray-400">
+                  <li className="flex items-center gap-2">✅ Planificación de objetivos</li>
+                  <li className="flex items-center gap-2">✅ Ejecución de herramientas externas</li>
+                  <li className="flex items-center gap-2">✅ Razonamiento de múltiples pasos</li>
+                </ul>
+              </div>
+              <div className="p-4 bg-white/5 rounded-xl border border-white/10 italic text-sm text-[var(--color-hornette-muted)]">
+                "La era de los agentes marca el fin del prompt manual y el inicio de la automatización inteligente."
               </div>
             </div>
           )
