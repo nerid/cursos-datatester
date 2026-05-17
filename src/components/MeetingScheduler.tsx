@@ -24,7 +24,12 @@ export default function MeetingScheduler({ user, onClose }: MeetingSchedulerProp
   const [error, setError] = useState<string | null>(null);
 
   const dates = ["2026-05-19", "2026-05-20", "2026-05-21", "2026-05-22"];
-  const slots = ["09:00 AM - 11:00 AM", "06:00 PM - 08:00 PM"];
+  const slots = [
+    "09:00 AM - 10:00 AM",
+    "10:00 AM - 11:00 AM",
+    "06:00 PM - 07:00 PM",
+    "07:00 PM - 08:00 PM"
+  ];
 
   useEffect(() => {
     fetchAppointments();
