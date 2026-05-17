@@ -453,23 +453,35 @@ export default function SessionPage() {
           content: (
             <div className="space-y-4">
               <p>Comparativa de las herramientas más potentes en nuestra región:</p>
-              <div className="space-y-3">
-                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
-                  <div className="font-bold text-white min-w-[100px]">ChatGPT:</div>
-                  <p className="text-sm text-gray-300">El referente versátil. Destaca por su ecosistema de <strong>GPTs</strong> y facilidad de uso.</p>
-                </div>
-                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
-                  <div className="font-bold text-white min-w-[100px]">Claude:</div>
-                  <p className="text-sm text-gray-300">El más natural y seguro. Ideal para procesar <strong>documentos extensos</strong> (PDFs de 500+ páginas).</p>
-                </div>
-                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
-                  <div className="font-bold text-white min-w-[100px]">Copilot:</div>
-                  <p className="text-sm text-gray-300">Integración total con <strong>Microsoft 365</strong>. Útil para trabajar sobre Word, Excel y PowerPoint.</p>
-                </div>
-                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
-                  <div className="font-bold text-white min-w-[100px]">Grok:</div>
-                  <p className="text-sm text-gray-300">Audaz y sin filtros. Conectado en <strong>tiempo real</strong> a la red social X (Twitter).</p>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3 hover:bg-white/10 hover:border-white/20 transition-all">
+                  <img src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64" alt="ChatGPT" className="w-8 h-8 rounded-full bg-white/90 p-0.5 shrink-0" />
+                  <div>
+                    <div className="font-bold text-white mb-1 flex items-center gap-2">ChatGPT <ExternalLink className="w-3 h-3 text-gray-400" /></div>
+                    <p className="text-sm text-gray-300">El referente versátil. Destaca por su ecosistema de <strong>GPTs</strong> y facilidad de uso.</p>
+                  </div>
+                </a>
+                <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3 hover:bg-white/10 hover:border-white/20 transition-all">
+                  <img src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" alt="Claude" className="w-8 h-8 rounded-full bg-white/90 p-0.5 shrink-0" />
+                  <div>
+                    <div className="font-bold text-white mb-1 flex items-center gap-2">Claude <ExternalLink className="w-3 h-3 text-gray-400" /></div>
+                    <p className="text-sm text-gray-300">El más natural y seguro. Ideal para procesar <strong>documentos extensos</strong> (PDFs grandes).</p>
+                  </div>
+                </a>
+                <a href="https://copilot.microsoft.com" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3 hover:bg-white/10 hover:border-white/20 transition-all">
+                  <img src="https://www.google.com/s2/favicons?domain=copilot.microsoft.com&sz=64" alt="Copilot" className="w-8 h-8 rounded-full bg-white/90 p-0.5 shrink-0" />
+                  <div>
+                    <div className="font-bold text-white mb-1 flex items-center gap-2">Copilot <ExternalLink className="w-3 h-3 text-gray-400" /></div>
+                    <p className="text-sm text-gray-300">Integración total con <strong>Microsoft 365</strong>. Útil para trabajar sobre Word y Excel.</p>
+                  </div>
+                </a>
+                <a href="https://x.com/i/grok" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3 hover:bg-white/10 hover:border-white/20 transition-all">
+                  <img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" alt="Grok" className="w-8 h-8 rounded-full bg-black p-1 shrink-0 border border-white/20" />
+                  <div>
+                    <div className="font-bold text-white mb-1 flex items-center gap-2">Grok <ExternalLink className="w-3 h-3 text-gray-400" /></div>
+                    <p className="text-sm text-gray-300">Audaz y sin filtros. Conectado en <strong>tiempo real</strong> a la red social X (Twitter).</p>
+                  </div>
+                </a>
               </div>
             </div>
           )
@@ -480,19 +492,28 @@ export default function SessionPage() {
           content: (
             <div className="space-y-4">
               <p>Modelos emergentes con capacidades asombrosas (muchos gratuitos):</p>
-              <div className="space-y-3">
-                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
-                  <div className="font-bold text-white min-w-[100px]">DeepSeek:</div>
-                  <p className="text-sm text-gray-300">Eficiencia extrema. Capaz de razonar como modelos mucho más costosos.</p>
-                </div>
-                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
-                  <div className="font-bold text-white min-w-[100px]">Qwen:</div>
-                  <p className="text-sm text-gray-300">El gigante de Alibaba. Robusto para análisis de datos masivos y código.</p>
-                </div>
-                <div className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3">
-                  <div className="font-bold text-white min-w-[100px]">Zhipu / Chat.z.ai:</div>
-                  <p className="text-sm text-gray-300">Punteros en el ecosistema asiático con integración de video y búsqueda avanzada.</p>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <a href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3 hover:bg-white/10 hover:border-white/20 transition-all">
+                  <img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=64" alt="DeepSeek" className="w-8 h-8 rounded-full bg-white/90 p-0.5 shrink-0" />
+                  <div>
+                    <div className="font-bold text-white mb-1 flex items-center gap-2">DeepSeek <ExternalLink className="w-3 h-3 text-gray-400" /></div>
+                    <p className="text-sm text-gray-300">Eficiencia extrema. Capaz de razonar como modelos mucho más costosos.</p>
+                  </div>
+                </a>
+                <a href="https://chat.qwenlm.ai" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3 hover:bg-white/10 hover:border-white/20 transition-all">
+                  <img src="https://www.google.com/s2/favicons?domain=qwenlm.ai&sz=64" alt="Qwen" className="w-8 h-8 rounded-full bg-white/90 p-0.5 shrink-0" />
+                  <div>
+                    <div className="font-bold text-white mb-1 flex items-center gap-2">Qwen <ExternalLink className="w-3 h-3 text-gray-400" /></div>
+                    <p className="text-sm text-gray-300">El gigante de Alibaba. Robusto para análisis de datos masivos y código.</p>
+                  </div>
+                </a>
+                <a href="https://chatglm.cn" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3 hover:bg-white/10 hover:border-white/20 transition-all md:col-span-2">
+                  <img src="https://www.google.com/s2/favicons?domain=chatglm.cn&sz=64" alt="Zhipu" className="w-8 h-8 rounded-full bg-white/90 p-0.5 shrink-0" />
+                  <div>
+                    <div className="font-bold text-white mb-1 flex items-center gap-2">Zhipu / Chat.z.ai <ExternalLink className="w-3 h-3 text-gray-400" /></div>
+                    <p className="text-sm text-gray-300">Punteros en el ecosistema asiático con integración de video y búsqueda avanzada.</p>
+                  </div>
+                </a>
               </div>
               <div className="mt-4 p-4 bg-red-500/10 rounded-xl border border-red-500/20">
                 <p className="text-xs text-red-300 font-medium uppercase tracking-wider mb-2">Nota importante:</p>
