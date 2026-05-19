@@ -151,6 +151,116 @@ export default function ResourcesDrawer() {
                   </div>
                 )}
 
+                {/* Session 4 Resources */}
+                {sessionId >= 4 && (
+                  <div>
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-[var(--color-hornette-muted)] mb-3">Recursos sesión 4 (Modelos Asiáticos)</h3>
+                    <div className="space-y-3">
+                      <a 
+                        href="https://www.mailticking.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-start gap-4 p-4 rounded-xl border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-all group"
+                      >
+                        <div className="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+                          <ExternalLink className="w-6 h-6 text-blue-400" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-blue-400 mb-1 flex items-center gap-2">
+                            Mailticking <ExternalLink className="w-3 h-3 opacity-70" />
+                          </h4>
+                          <p className="text-sm text-[var(--color-hornette-muted)]">Generador de correos temporales para registros seguros.</p>
+                        </div>
+                      </a>
+                      
+                      <a 
+                        href="https://chat.deepseek.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all group"
+                      >
+                        <div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
+                          <Globe className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-white mb-1 flex items-center gap-2">
+                            DeepSeek <ExternalLink className="w-3 h-3 opacity-70" />
+                          </h4>
+                          <p className="text-sm text-[var(--color-hornette-muted)]">Eficiencia extrema y alto razonamiento.</p>
+                        </div>
+                      </a>
+
+                      <a 
+                        href="https://chat.qwenlm.ai/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all group"
+                      >
+                        <div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
+                          <Globe className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-white mb-1 flex items-center gap-2">
+                            Qwen <ExternalLink className="w-3 h-3 opacity-70" />
+                          </h4>
+                          <p className="text-sm text-[var(--color-hornette-muted)]">El modelo robusto de Alibaba.</p>
+                        </div>
+                      </a>
+
+                      <a 
+                        href="https://chatglm.cn/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all group"
+                      >
+                        <div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
+                          <Globe className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-white mb-1 flex items-center gap-2">
+                            Zhipu / Chat.z.ai <ExternalLink className="w-3 h-3 opacity-70" />
+                          </h4>
+                          <p className="text-sm text-[var(--color-hornette-muted)]">Puntero en el ecosistema asiático.</p>
+                        </div>
+                      </a>
+
+                      <a 
+                        href="https://www.kimi.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all group"
+                      >
+                        <div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
+                          <Globe className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-white mb-1 flex items-center gap-2">
+                            Kimi <ExternalLink className="w-3 h-3 opacity-70" />
+                          </h4>
+                          <p className="text-sm text-[var(--color-hornette-muted)]">Procesamiento de documentos y gran razonamiento (Moonshot AI).</p>
+                        </div>
+                      </a>
+
+                      <a 
+                        href="https://ernie.baidu.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all group"
+                      >
+                        <div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
+                          <Globe className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-white mb-1 flex items-center gap-2">
+                            Ernie Bot <ExternalLink className="w-3 h-3 opacity-70" />
+                          </h4>
+                          <p className="text-sm text-[var(--color-hornette-muted)]">La potente respuesta de Baidu en el ecosistema de IA.</p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                )}
+
               </div>
               
               <div className="p-6 border-t border-white/10 bg-black/20">

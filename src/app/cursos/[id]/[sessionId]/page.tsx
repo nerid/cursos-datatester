@@ -487,11 +487,13 @@ export default function SessionPage() {
           )
         },
         {
-          title: "🏮 Potencias orientales",
+          title: "🏮 Potencias orientales y registro",
           icon: <Zap className="w-6 h-6 text-red-400" />,
           content: (
             <div className="space-y-4">
-              <p>Modelos emergentes con capacidades asombrosas (muchos gratuitos):</p>
+              <p>Modelos emergentes con capacidades asombrosas y herramientas para acceder a ellos:</p>
+              
+              <h4 className="font-bold text-white mt-4">🤖 Modelos de Inteligencia Artificial:</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <a href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3 hover:bg-white/10 hover:border-white/20 transition-all">
                   <img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=64" alt="DeepSeek" className="w-8 h-8 rounded-full bg-white/90 p-0.5 shrink-0" />
@@ -507,17 +509,43 @@ export default function SessionPage() {
                     <p className="text-sm text-gray-300">El gigante de Alibaba. Robusto para análisis de datos masivos y código.</p>
                   </div>
                 </a>
-                <a href="https://chatglm.cn" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3 hover:bg-white/10 hover:border-white/20 transition-all md:col-span-2">
+                <a href="https://chatglm.cn" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3 hover:bg-white/10 hover:border-white/20 transition-all">
                   <img src="https://www.google.com/s2/favicons?domain=chatglm.cn&sz=64" alt="Zhipu" className="w-8 h-8 rounded-full bg-white/90 p-0.5 shrink-0" />
                   <div>
                     <div className="font-bold text-white mb-1 flex items-center gap-2">Zhipu / Chat.z.ai <ExternalLink className="w-3 h-3 text-gray-400" /></div>
                     <p className="text-sm text-gray-300">Punteros en el ecosistema asiático con integración de video y búsqueda avanzada.</p>
                   </div>
                 </a>
+                <a href="https://www.kimi.com/" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3 hover:bg-white/10 hover:border-white/20 transition-all">
+                  <img src="https://www.google.com/s2/favicons?domain=kimi.com&sz=64" alt="Kimi" className="w-8 h-8 rounded-full bg-white/90 p-0.5 shrink-0" />
+                  <div>
+                    <div className="font-bold text-white mb-1 flex items-center gap-2">Kimi <ExternalLink className="w-3 h-3 text-gray-400" /></div>
+                    <p className="text-sm text-gray-300">Excelente procesamiento de documentos largos y capacidades de razonamiento. Desarrollado por Moonshot AI.</p>
+                  </div>
+                </a>
+                <a href="https://ernie.baidu.com/" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3 hover:bg-white/10 hover:border-white/20 transition-all md:col-span-2">
+                  <img src="https://www.google.com/s2/favicons?domain=ernie.baidu.com&sz=64" alt="Ernie" className="w-8 h-8 rounded-full bg-white/90 p-0.5 shrink-0" />
+                  <div>
+                    <div className="font-bold text-white mb-1 flex items-center gap-2">Ernie Bot <ExternalLink className="w-3 h-3 text-gray-400" /></div>
+                    <p className="text-sm text-gray-300">La potente respuesta de Baidu en el ecosistema de IA, con gran entendimiento de la cultura y lenguaje asiático.</p>
+                  </div>
+                </a>
               </div>
+
+              <h4 className="font-bold text-white mt-6">📧 Herramienta de registro temporal:</h4>
+              <div className="grid grid-cols-1 gap-3">
+                <a href="https://www.mailticking.com/" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-start gap-3 hover:bg-white/10 hover:border-blue-500/30 transition-all">
+                  <img src="https://www.google.com/s2/favicons?domain=mailticking.com&sz=64" alt="Mailticking" className="w-8 h-8 rounded-full bg-white/90 p-0.5 shrink-0" />
+                  <div>
+                    <div className="font-bold text-white mb-1 flex items-center gap-2">Mailticking <ExternalLink className="w-3 h-3 text-gray-400" /></div>
+                    <p className="text-sm text-gray-300">Generador de correos temporales. Ideal para registrarse en plataformas asiáticas sin usar tu correo principal y proteger tu privacidad.</p>
+                  </div>
+                </a>
+              </div>
+              
               <div className="mt-4 p-4 bg-red-500/10 rounded-xl border border-red-500/20">
                 <p className="text-xs text-red-300 font-medium uppercase tracking-wider mb-2">Nota importante:</p>
-                <p className="text-sm">Explora estos enlaces para conocer interfaces alternativas y modelos 'open weights'.</p>
+                <p className="text-sm">Explora estos enlaces para conocer interfaces alternativas y modelos 'open weights'. Usa Mailticking para acceder de forma rápida y segura.</p>
               </div>
             </div>
           )
