@@ -86,7 +86,7 @@ export default function MeetingScheduler({ user, onClose }: MeetingSchedulerProp
       setStep("confirm");
     } catch (err: any) {
       console.error("Error saving appointment:", err);
-      setError("No se pudo agendar la cita. Por favor intenta de nuevo.");
+      setError("No se pudo agendar automáticamente por seguridad de la red. Por favor, envía un correo a zyanya.solorzano@gmail.com indicando el horario que elegiste para apartarlo manualmente.");
     } finally {
       setIsSaving(false);
     }
