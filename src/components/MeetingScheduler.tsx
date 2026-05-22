@@ -23,13 +23,24 @@ export default function MeetingScheduler({ user, onClose }: MeetingSchedulerProp
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const dates = ["2026-05-19", "2026-05-20", "2026-05-21", "2026-05-22"];
-  const slots = [
-    "09:00 AM - 10:00 AM",
-    "10:00 AM - 11:00 AM",
-    "06:00 PM - 07:00 PM",
-    "07:00 PM - 08:00 PM"
-  ];
+  const dates = ["2026-05-22", "2026-05-24", "2026-05-25"];
+  
+  const getSlotsForDate = (date: string | null) => {
+    if (date === "2026-05-24") {
+      return [
+        "09:00 AM - 10:00 AM",
+        "10:00 AM - 11:00 AM"
+      ];
+    }
+    return [
+      "09:00 AM - 10:00 AM",
+      "10:00 AM - 11:00 AM",
+      "06:00 PM - 07:00 PM",
+      "07:00 PM - 08:00 PM"
+    ];
+  };
+
+  const currentSlots = getSlotsForDate(selectedDate);
 
   useEffect(() => {
     fetchAppointments();
@@ -176,7 +187,7 @@ export default function MeetingScheduler({ user, onClose }: MeetingSchedulerProp
                   <div>
                     <label className="text-sm font-bold text-[var(--color-hornette-muted)] uppercase tracking-widest mb-3 block">Horario disponible</label>
                     <div className="space-y-3">
-                      {slots.map(slot => {
+                      {currentSlots.map(slot => {
                         const blocked = selectedDate ? isSlotBlocked(selectedDate, slot) : false;
                         return (
                           <button
